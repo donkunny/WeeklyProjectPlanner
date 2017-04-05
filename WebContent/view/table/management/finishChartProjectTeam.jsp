@@ -15,8 +15,10 @@
                 <div class="row"> 
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
-                        	<div class="col-sm-12">  
-	                            <h2 class="box-title">프로젝트 이름1</h2> 
+                        	<div class="col-sm-12">
+                        	<c:forEach var="sdto" items="${mlist}">
+	                            <h2 class="box-title">${sdto.pName}</h2>
+	                        </c:forEach> 
                         	</div>     
                         	<div id="visualization" class="col-sm-12"></div>  
                         </div>
@@ -32,7 +34,7 @@
 <!-- Chart -->
 <script type="text/javascript">
 var groups = new vis.DataSet([
-    {id: 0, content: '<div class="chartTableMain"><div class="col-sm-8 chartTable">프로젝트 이름</div><div class="col-sm-4 chartTable chartTable-name">김진우</div></div>', value: 1},
+    {id: 0, content: '<div class="chartTableMain"><div class="col-sm-8 chartTable">프로젝트이름1</div><div class="col-sm-4 chartTable chartTable-name">김진우</div></div>', value: 1},
     {id: 1, content: '<div class="chartTableMain"><div class="col-sm-8 chartTable">세부업무 이름1</div><div class="col-sm-4 chartTable chartTable-name">김용현</div></div>', value: 2},
     {id: 2, content: '<div class="chartTableMain"><div class="col-sm-8 chartTable">세부업무 이름2</div><div class="col-sm-4 chartTable chartTable-name">김동혁</div></div>', value: 3},
   ]);

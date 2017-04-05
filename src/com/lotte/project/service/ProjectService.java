@@ -9,6 +9,8 @@ import com.lotte.project.model.dto.ProjectDTO;
 
 public interface ProjectService {
 	public ArrayList<ProjectDTO> listAllProjects() throws SQLException, NotExistException;
+	public ArrayList<SuperDTO> mlistAllProjects() throws SQLException, NotExistException;
+	public ArrayList<SuperDTO> slistAllProjects() throws SQLException, NotExistException;
 	public ArrayList<SuperDTO> listProgressingPrjManagers(int eIndex) throws SQLException;
 	public ArrayList<SuperDTO> listProgressedPrjManagers(int eIndex) throws SQLException;
 	public ArrayList<SuperDTO> listProgressingPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
