@@ -21,7 +21,7 @@ public class ProjectController extends HttpServlet{
 		String command = request.getParameter("command");
 		if(command.equals("listAll")){
 			listAllProjects(request, response);
-		}
+		} 
 	}
 	
 	// 모든 프로젝트 리스트를 화면에 출력
@@ -37,7 +37,14 @@ public class ProjectController extends HttpServlet{
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 	
-	// 
+	// 개인 프로젝트 테이블을 화면에 출력
+	public void listAllPersonalProjects(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try{
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	
 	//

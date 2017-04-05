@@ -53,17 +53,17 @@ public class ProjectDAOImpl implements ProjectDAO{
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<SuperDTO> list = null;
+		SuperDTO tmp = null;
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select p.pName, e2.eName,"
-					+ "e2.eIndex, p.pIndex, pt.ptIndex"
-					+ "from Employee e1, Employee e2, Project p, ProjectTeam pt"
-					+ "where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress < 100");
+			pstmt = con.prepareStatement("select p.pName, e2.eName, e2.eIndex, p.pIndex, pt.ptIndex"
+					+ " from Employee e1, Employee e2, Project p, ProjectTeam pt"
+					+ " where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress < 100");
 			pstmt.setInt(1, eIndex);
 			rset = pstmt.executeQuery();
 			list = new ArrayList<SuperDTO>();
 			while(rset.next()){
-				SuperDTO tmp = new SuperDTO();
+				tmp = new SuperDTO();
 				tmp.setpName(rset.getString(1));
 				tmp.seteName(rset.getString(2));
 				tmp.seteIndex(rset.getInt(3));
@@ -86,8 +86,8 @@ public class ProjectDAOImpl implements ProjectDAO{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("select p.pName, e2.eName,"
 					+ "e2.eIndex, p.pIndex, pt.ptIndex"
-					+ "from Employee e1, Employee e2, Project p, ProjectTeam pt"
-					+ "where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress = 100");
+					+ " from Employee e1, Employee e2, Project p, ProjectTeam pt"
+					+ " where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress = 100");
 			pstmt.setInt(1, eIndex);
 			rset = pstmt.executeQuery();
 			list = new ArrayList<SuperDTO>();
@@ -116,8 +116,8 @@ public class ProjectDAOImpl implements ProjectDAO{
 			pstmt = con.prepareStatement("select d.dPart, pd.pdName, e.eName, "
 					+ "pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
 					+ "d.dIndex, pd.pdIndex"
-					+ "from Employee e, Department d, ProjectDetail pd, Project p"
-					+ "where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress < 100 and p.pIndex = ?");
+					+ " from Employee e, Department d, ProjectDetail pd, Project p"
+					+ " where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress < 100 and p.pIndex = ?");
 			pstmt.setInt(1, eIndex);
 			pstmt.setInt(2, pIndex);
 			rset = pstmt.executeQuery();
@@ -150,8 +150,8 @@ public class ProjectDAOImpl implements ProjectDAO{
 			pstmt = con.prepareStatement("select d.dPart, pd.pdName, e.eName, "
 					+ "pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
 					+ "d.dIndex, pd.pdIndex"
-					+ "from Employee e, Department d, ProjectDetail pd, Project p"
-					+ "where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress = 100 and p.pIndex = ?");
+					+ " from Employee e, Department d, ProjectDetail pd, Project p"
+					+ " where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress = 100 and p.pIndex = ?");
 			pstmt.setInt(1, eIndex);
 			pstmt.setInt(2, pIndex);
 			rset = pstmt.executeQuery();
