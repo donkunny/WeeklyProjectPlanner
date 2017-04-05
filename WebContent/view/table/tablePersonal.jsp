@@ -1,6 +1,4 @@
-<%@ page import="com.lotte.emp.model.dto.SuperDTO, java.util.ArrayList, java.util.Map, java.util.HashMap"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/view/common/common_header.jsp" %>
 <%-- <% ArrayList<SuperDTO> obj= (ArrayList)request.getAttribute("dto"); %> --%>
 <%-- <% Map<String, ArrayList<SuperDTO>> dtlPrj = (HashMap)request.getAttribute("dtlPrj");  %> --%>
@@ -31,7 +29,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>파트</th>
-                                            <th>업무 상세</th>
+                                            <th style="width: 400px">업무 상세</th>
                                             <th>담당자</th>
                                             <th>시작일</th>
                                             <th>종료일</th> 

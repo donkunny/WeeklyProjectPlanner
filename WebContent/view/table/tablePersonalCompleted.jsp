@@ -1,4 +1,3 @@
-<%@ page import="com.lotte.emp.model.dto.SuperDTO, java.util.ArrayList, java.util.Map, java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/view/common/common_header.jsp" %>
@@ -19,12 +18,9 @@
                 <div class="row">
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
-                        	<div class="col-sm-10">
+                        	<div class="col-sm-12">
 	                             <h3 class="box-title">${project.pName} / ${project.eName }</h3>
-                        	</div>
-                        	<div class="col-sm-2">
-                        		<button class="btn btn-write" data-toggle="modal" data-target="#writeModal">작성</button>
-                        	</div>                        
+                        	</div>                      
                             <div class="table-responsive col-sm-12"> 
                                 <table class="table"> 
                                     <thead>  
@@ -41,7 +37,7 @@
                                     </thead>
                                     <c:forEach var="detail"  items="${dtlPrj[status.index]}" varStatus="dStatus">
                                     <tbody class="work-table">
-                                        <tr data-toggle="modal" data-target="#modifyModal"> 
+                                        <tr> 
                                             <td>${dStatus.count}</td>
                                             <td>${detail.dPart}</td>
                                             <td>${detail.pdName }</td>
