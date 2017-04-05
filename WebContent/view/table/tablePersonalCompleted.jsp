@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@include file="/view/common/common_header.jsp" %>
 <%-- <% ArrayList<SuperDTO> obj= (ArrayList)request.getAttribute("dto"); %> --%>
 <%-- <% Map<String, ArrayList<SuperDTO>> dtlPrj = (HashMap)request.getAttribute("dtlPrj");  %> --%>
@@ -17,19 +18,16 @@
                 <div class="row">
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
-                        	<div class="col-sm-10">
+                        	<div class="col-sm-12">
 	                             <h3 class="box-title">${project.pName} / ${project.eName }</h3>
-                        	</div>
-                        	<div class="col-sm-2">
-                        		<button class="btn btn-write" data-toggle="modal" data-target="#writeModal">작성</button>
-                        	</div>                        
+                        	</div>                      
                             <div class="table-responsive col-sm-12"> 
                                 <table class="table"> 
                                     <thead>  
                                         <tr>
                                             <th>#</th>
                                             <th>파트</th>
-                                            <th style="width: 400px">업무 상세</th>
+                                            <th>업무 상세</th>
                                             <th>담당자</th>
                                             <th>시작일</th>
                                             <th>종료일</th> 
@@ -39,7 +37,7 @@
                                     </thead>
                                     <c:forEach var="detail"  items="${dtlPrj[status.index]}" varStatus="dStatus">
                                     <tbody class="work-table">
-                                        <tr data-toggle="modal" data-target="#modifyModal"> 
+                                        <tr> 
                                             <td>${dStatus.count}</td>
                                             <td>${detail.dPart}</td>
                                             <td>${detail.pdName }</td>

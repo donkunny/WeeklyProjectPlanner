@@ -34,13 +34,13 @@ public class EmpController extends HttpServlet{
 			userLogin(request, response);
 		} else if("personalProgress".equals(command)) {
 			personalProgress(request, response);
-		} else if("".equals(command)) {
-			
+		} else if("personalCompletedProgress".equals(command)) {
+			personalCompletedProgress(request, response);
 		} else if("".equals(command)) {
 			
 		}
 	}
-	
+
 	public void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -72,7 +72,7 @@ public class EmpController extends HttpServlet{
 	
 	public void personalProgress(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id =Integer.parseInt(request.getParameter("eIndex"));
-		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
+		String url = "view/error/listError.jsp"; // 에러 창으로 이동
 
 		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
 
@@ -92,4 +92,27 @@ public class EmpController extends HttpServlet{
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
+	
+	private void personalCompletedProgress(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id =Integer.parseInt(request.getParameter("eIndex"));
+		String url = "view/error/listError.jsp"; // 에러 창으로 이동
+		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
+
+		try {
+				ArrayList<SuperDTO> sDto = pService.listProgressedPrjManagers(id);
+				if(sDto != null){
+					for(int i = 0; i<sDto.size(); i++){
+						detailProjects.add(pService.listProgressedPrjDtlManagers(sDto.get(i).geteIndex(), sDto.get(i).getpIndex()));
+					}
+				}
+				url ="view/table/tablePersonalCompleted.jsp";
+				HttpSession session = request.getSession();
+				session.setAttribute("dto", sDto);
+				session.setAttribute("dtlPrj", detailProjects);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+
 }
