@@ -1,8 +1,9 @@
-<%@page import="com.lotte.emp.model.dto.SuperDTO, java.util.ArrayList"%>
+<%@page import="com.lotte.emp.model.dto.SuperDTO, java.util.ArrayList, java.util.Map, java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/view/common/common_header.jsp" %>
-<% ArrayList<SuperDTO> obj= (ArrayList)request.getAttribute("dto"); %>
+<%-- <% ArrayList<SuperDTO> obj= (ArrayList)request.getAttribute("dto"); %> --%>
+<%-- <% Map<String, ArrayList<SuperDTO>> dtlPrj = (HashMap)request.getAttribute("dtlPrj");  %> --%>
         <!-- ============================================================== -->
         <!-- Page Content -->
         <!-- ============================================================== -->
@@ -14,12 +15,12 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /row -->
-                <c:forEach var="item" items="${dto}">
+                <c:forEach var="project" items="${dto}">
                 <div class="row">
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
                         	<div class="col-sm-10">
-	                             <h3 class="box-title">${item.pName} / ${item.eName }</h3>
+	                             <h3 class="box-title">${project.pName} / ${project.eName }</h3>
                         	</div>
                         	<div class="col-sm-2">
                         		<button class="btn btn-write" data-toggle="modal" data-target="#writeModal">작성</button>
@@ -38,28 +39,20 @@
                                             <th>진행률</th>
                                         </tr>
                                     </thead>
+                                    <c:forEach var="detail"  items="${dtlPrj.key0}">
                                     <tbody class="work-table">
                                         <tr data-toggle="modal" data-target="#modifyModal">  
-                                            <td>1</td>
-                                            <td>영업</td>
-                                            <td>모듈 개발</td>
-                                            <td>김진우</td>  
-                                            <td>17-02-14</td>
-                                            <td>17-03-22</td>
+                                            <td>${detail.pIndex}</td>
+                                            <td>${detail.pName }</td>
+                                            <td>${detail.pdName }</td>
+                                            <td>${detail.eName }</td>  
+                                            <td>${detail.pdStartDate }</td>
+                                            <td>${detail.pdEndDate }</td>
                                             <td>45</td>
-                                            <td>55%</td>
-                                    	</tr>
-                                    	<tr>
-                                            <td>2</td>
-                                            <td>영업</td>
-                                            <td>상품 지원</td>
-                                            <td>김진우</td>
-                                            <td>17-03-14</td>
-                                            <td>17-04-12</td>
-                                            <td>49</td>
-                                            <td>76%</td>
+                                            <td>${detail.pdProgress }%</td>
                                     	</tr>
                                     </tbody>
+                                    </c:forEach>
                                 </table>
                             </div>
                         </div>

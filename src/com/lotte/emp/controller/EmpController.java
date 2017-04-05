@@ -2,6 +2,8 @@ package com.lotte.emp.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,15 +35,22 @@ public class EmpController extends HttpServlet{
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
+		Map<String, ArrayList<SuperDTO>> detailProjects = new HashMap<String, ArrayList<SuperDTO>>();
 		try {
 			EmpDTO dto = service.userLogin(Integer.parseInt(id), pw);
 //			System.out.println(dto.geteIndex());
 			if(dto != null){
 				ArrayList<SuperDTO> sDto = pService.listProgressingPrjManagers(dto.geteIndex());
+				if(sDto != null){
+					for(int i = 0; i<sDto.size(); i++){
+						detailProjects.put("key"+i, pService.listProgressingPrjDtlManagers(sDto.get(i).geteIndex(), sDto.get(i).getpIndex()));
+					}
+				}
 				url ="view/table/tablePersonal.jsp";
 				HttpSession session = request.getSession();
 				session.setAttribute("msg", dto);
 				request.setAttribute("dto", sDto);
+				request.setAttribute("dtlPrj", detailProjects);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
