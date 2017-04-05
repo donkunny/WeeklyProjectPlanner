@@ -1,4 +1,4 @@
-<%@page import="com.lotte.emp.model.dto.SuperDTO, java.util.ArrayList, java.util.Map, java.util.HashMap"%>
+<%@ page import="com.lotte.emp.model.dto.SuperDTO, java.util.ArrayList, java.util.Map, java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/view/common/common_header.jsp" %>
@@ -15,7 +15,7 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /row -->
-                <c:forEach var="project" items="${dto}">
+                <c:forEach var="project" items="${dto}" varStatus="status">
                 <div class="row">
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
@@ -39,16 +39,17 @@
                                             <th>진행률</th>
                                         </tr>
                                     </thead>
-                                    <c:forEach var="detail"  items="${dtlPrj.key0}">
+                                    <c:forEach var="detail"  items="${dtlPrj[status.index]}" varStatus="dStatus">
                                     <tbody class="work-table">
-                                        <tr data-toggle="modal" data-target="#modifyModal">  
-                                            <td>${detail.pIndex}</td>
-                                            <td>${detail.pName }</td>
+                                        <tr data-toggle="modal" data-target="#modifyModal"> 
+                                            <td>${dStatus.count}</td>
+                                            <td>${detail.dPart}</td>
                                             <td>${detail.pdName }</td>
                                             <td>${detail.eName }</td>  
                                             <td>${detail.pdStartDate }</td>
                                             <td>${detail.pdEndDate }</td>
-                                            <td>45</td>
+                                            <fmt:parseNumber var="period"  integerOnly="true" value="${(detail.pdEndDate.getTime()-detail.pdStartDate.getTime()) / (24 * 60 * 60 * 1000)}"/>
+                                            <td>${period}</td>
                                             <td>${detail.pdProgress }%</td>
                                     	</tr>
                                     </tbody>

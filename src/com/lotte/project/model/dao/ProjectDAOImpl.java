@@ -117,7 +117,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 					+ "pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
 					+ "d.dIndex, pd.pdIndex"
 					+ " from Employee e, Department d, ProjectDetail pd, Project p"
-					+ " where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress < 100 and p.pIndex = ?");
+					+ " where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress < 100 and p.pIndex = ? and pd.pIndex = p.pIndex");
 			pstmt.setInt(1, eIndex);
 			pstmt.setInt(2, pIndex);
 			rset = pstmt.executeQuery();
@@ -126,7 +126,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 				SuperDTO tmp = new SuperDTO();
 				tmp.setdPart(rset.getString(1));
 				tmp.setPdName(rset.getString(2));
-				tmp.setpName(rset.getString(3));
+				tmp.seteName(rset.getString(3));
 				tmp.setPdStartDate(rset.getDate(4));
 				tmp.setPdEndDate(rset.getDate(5));
 				tmp.setPdProgress(rset.getInt(6));
@@ -151,7 +151,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 					+ "pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
 					+ "d.dIndex, pd.pdIndex"
 					+ " from Employee e, Department d, ProjectDetail pd, Project p"
-					+ " where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress = 100 and p.pIndex = ?");
+					+ " where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress = 100 and p.pIndex = ? and pd.pIndex = p.pIndex");
 			pstmt.setInt(1, eIndex);
 			pstmt.setInt(2, pIndex);
 			rset = pstmt.executeQuery();
@@ -160,7 +160,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 				SuperDTO tmp = new SuperDTO();
 				tmp.setdPart(rset.getString(1));
 				tmp.setPdName(rset.getString(2));
-				tmp.setpName(rset.getString(3));
+				tmp.seteName(rset.getString(3));
 				tmp.setPdStartDate(rset.getDate(4));
 				tmp.setPdEndDate(rset.getDate(5));
 				tmp.setPdProgress(rset.getInt(6));
