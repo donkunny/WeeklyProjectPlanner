@@ -30,7 +30,6 @@ public class EmpDAOImpl implements EmpDAO{
 			pstmt.setString(2, pw);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-//				System.out.println(rset.getString(2));
 				result = new EmpDTO(rset.getInt(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getDate(5), rset.getString(6), rset.getString(7), rset.getInt(8));
 			}
 		} finally {

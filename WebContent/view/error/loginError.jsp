@@ -34,9 +34,9 @@
     <section id="wrapper" class="error-page">
         <div class="error-box">
             <div class="error-body text-center">
-                <h3 class="text-danger">잘못된 경로입니다.</h3>
-                <h3 class="text-uppercase">Page Not Found !</h3>
-                <p class="text-muted m-t-30 m-b-30">YOU SEEM TO BE TRYING TO FIND HIS WAY HOME</p>
+                <h3 class="text-danger"><b>아이디 또는 비밀번호를 다시 확인하세요.</b></h3>
+                <h3 class="text-uppercase">등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.</h3>
+                <p class="text-muted m-t-30 m-b-30">앗, 로그인이 안 되나요?</p>
                 <a href="<%=root %>/view/login/login.jsp" class="btn btn-danger btn-rounded waves-effect waves-light m-b-40">Back to home</a> </div>
             <footer class="footer text-center">2017 © Ample Admin.</footer>
         </div>

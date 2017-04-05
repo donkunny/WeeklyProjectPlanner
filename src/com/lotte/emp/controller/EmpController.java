@@ -30,11 +30,10 @@ public class EmpController extends HttpServlet{
 	public void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
-		String url = ""; // 에러 창으로 이동
-//		System.out.println(id + " " + pw);
+		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
 		try {
 			EmpDTO dto = service.userLogin(Integer.parseInt(id), pw);
-			System.out.println(dto.toString());
+//			System.out.println(dto.toString());
 			if(dto != null){
 				url ="view/table/tablePersonal.jsp";
 				HttpSession session = request.getSession();
