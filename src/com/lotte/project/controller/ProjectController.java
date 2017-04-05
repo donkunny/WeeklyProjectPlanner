@@ -24,7 +24,7 @@ public class ProjectController extends HttpServlet{
 		
 		if("listAll".equals(command)){
 			path = listAllProjects(request, response);
-			PageMove.
+//			PageMove.
 		} else if("".equals(command)) {			
 			
 		} else if("".equals(command)) {			
@@ -61,13 +61,4 @@ public class ProjectController extends HttpServlet{
 		return null;
 		
 	}
-	
-	
-	//
-	
-	
-	//
-	
-	
-	//
 }
