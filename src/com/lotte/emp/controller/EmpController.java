@@ -30,8 +30,16 @@ public class EmpController extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String command = request.getParameter("command");
+		System.out.println("command : " + command);
+		
 		if(command.equals("login")){
 			userLogin(request, response);
+		} else if("pesonalProgress".equals(command)) {
+			
+		} else if("".equals(command)) {
+			
+		} else if("".equals(command)) {
+			
 		}
 	}
 	
@@ -39,6 +47,7 @@ public class EmpController extends HttpServlet{
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
+		
 		Map<String, ArrayList<SuperDTO>> detailProjects = new HashMap<String, ArrayList<SuperDTO>>();
 		try {
 			EmpDTO dto = service.userLogin(Integer.parseInt(id), pw);
@@ -52,8 +61,8 @@ public class EmpController extends HttpServlet{
 				url ="view/table/tablePersonal.jsp";
 				HttpSession session = request.getSession();
 				session.setAttribute("msg", dto);
-				request.setAttribute("dto", sDto);
-				request.setAttribute("dtlPrj", detailProjects);
+				session.setAttribute("dto", sDto);
+				session.setAttribute("dtlPrj", detailProjects);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
