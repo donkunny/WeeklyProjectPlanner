@@ -47,20 +47,130 @@ public class ProjectDAOImpl implements ProjectDAO{
 		}
 		return list;
 	}
-	@Override
-	public ArrayList<SuperDTO> listProgressingPrjManagers() throws SQLException {
-		return null;
+	@Override //2-1. 업무 테이블 당 제목 출력 (진행중 목록)
+	public ArrayList<SuperDTO> listProgressingPrjManagers(int eIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select p.pName, e2.eName,"
+					+ "e2.eIndex, p.pIndex, pt.ptIndex"
+					+ "from Employee e1, Employee e2, Project p, ProjectTeam pt"
+					+ "where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress < 100");
+			pstmt.setInt(1, eIndex);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while(rset.next()){
+				SuperDTO tmp = new SuperDTO();
+				tmp.setpName(rset.getString(1));
+				tmp.seteName(rset.getString(2));
+				tmp.seteIndex(rset.getInt(3));
+				tmp.setpIndex(rset.getInt(4));
+				tmp.setPtIndex(rset.getInt(5));
+				list.add(tmp);
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
 	}
-	@Override
-	public ArrayList<SuperDTO> listProgressedPrjManagers() throws SQLException {
-		return null;
+	@Override //2-1. 업무 테이블 당 제목 출력 (완료 목록)
+	public ArrayList<SuperDTO> listProgressedPrjManagers(int eIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select p.pName, e2.eName,"
+					+ "e2.eIndex, p.pIndex, pt.ptIndex"
+					+ "from Employee e1, Employee e2, Project p, ProjectTeam pt"
+					+ "where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress = 100");
+			pstmt.setInt(1, eIndex);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while(rset.next()){
+				SuperDTO tmp = new SuperDTO();
+				tmp.setpName(rset.getString(1));
+				tmp.seteName(rset.getString(2));
+				tmp.seteIndex(rset.getInt(3));
+				tmp.setpIndex(rset.getInt(4));
+				tmp.setPtIndex(rset.getInt(5));
+				list.add(tmp);
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
 	}
-	@Override
-	public ArrayList<SuperDTO> listProgressedPrjDtlManagers() throws SQLException {
-		return null;
+	@Override //2-1. 업무 테이블의 세부 업무 출력 (진행중 목록)
+	public ArrayList<SuperDTO> listProgressingPrjDtlManagers(int eIndex, int pIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select d.dPart, pd.pdName, e.eName, "
+					+ "pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
+					+ "d.dIndex, pd.pdIndex"
+					+ "from Employee e, Department d, ProjectDetail pd, Project p"
+					+ "where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress < 100 and p.pIndex = ?");
+			pstmt.setInt(1, eIndex);
+			pstmt.setInt(2, pIndex);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while(rset.next()){
+				SuperDTO tmp = new SuperDTO();
+				tmp.setdPart(rset.getString(1));
+				tmp.setPdName(rset.getString(2));
+				tmp.setpName(rset.getString(3));
+				tmp.setPdStartDate(rset.getDate(4));
+				tmp.setPdEndDate(rset.getDate(5));
+				tmp.setPdProgress(rset.getInt(6));
+				tmp.setdIndex(rset.getInt(7));
+				tmp.setPdIndex(rset.getInt(8));
+				list.add(tmp);
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
 	}
-	@Override
-	public ArrayList<SuperDTO> listProgressingPrjDtlManagers() throws SQLException {
-		return null;
+	@Override //2-1. 업무 테이블의 세부 업무 출력 (완료 목록)
+	public ArrayList<SuperDTO> listProgressedPrjDtlManagers(int eIndex, int pIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select d.dPart, pd.pdName, e.eName, "
+					+ "pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
+					+ "d.dIndex, pd.pdIndex"
+					+ "from Employee e, Department d, ProjectDetail pd, Project p"
+					+ "where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress = 100 and p.pIndex = ?");
+			pstmt.setInt(1, eIndex);
+			pstmt.setInt(2, pIndex);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while(rset.next()){
+				SuperDTO tmp = new SuperDTO();
+				tmp.setdPart(rset.getString(1));
+				tmp.setPdName(rset.getString(2));
+				tmp.setpName(rset.getString(3));
+				tmp.setPdStartDate(rset.getDate(4));
+				tmp.setPdEndDate(rset.getDate(5));
+				tmp.setPdProgress(rset.getInt(6));
+				tmp.setdIndex(rset.getInt(7));
+				tmp.setPdIndex(rset.getInt(8));
+				list.add(tmp);
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
 	}
 }

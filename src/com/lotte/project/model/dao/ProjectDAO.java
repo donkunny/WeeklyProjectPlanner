@@ -8,8 +8,8 @@ import com.lotte.project.model.dto.ProjectDTO;
 
 public interface ProjectDAO {
 	public ArrayList<ProjectDTO> listAllProjects() throws SQLException;
-	public ArrayList<SuperDTO> listProgressingPrjManagers() throws SQLException;
-	public ArrayList<SuperDTO> listProgressedPrjManagers() throws SQLException;
-	public ArrayList<SuperDTO> listProgressingPrjDtlManagers() throws SQLException;
-	public ArrayList<SuperDTO> listProgressedPrjDtlManagers() throws SQLException;
+	public ArrayList<SuperDTO> listProgressingPrjManagers(int eIndex) throws SQLException;
+	public ArrayList<SuperDTO> listProgressedPrjManagers(int eIndex) throws SQLException;
+	public ArrayList<SuperDTO> listProgressingPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
+	public ArrayList<SuperDTO> listProgressedPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
 }
