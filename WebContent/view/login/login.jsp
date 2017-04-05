@@ -1,8 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	String root = request.getContextPath();
-%>    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% String root = request.getContextPath(); %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -93,14 +90,15 @@
 						<div class="wwp-login">
 							<h1>LOGIN</h1>
 							<form name="loginform"  role="form" >
+								<input type="hidden"  name="command" value="login">
 								<div class="wwp-login-card">
 									<div class="input-container"> 
-										<input type="text" class="wwp-login-input wwp-login-input-enum" id="username"  name="id"  value="" required="required"/>
+										<input type="text" class="wwp-login-input wwp-login-input-enum" id="username"  name="id"  />
 										<label for="username">Username</label>
 										<div class="bar"></div>
 									</div>
 									<div class="input-container">
-										<input type="password" class="wwp-login-input wwp-login-input-epw" id="password" name="pw" value="" required="required" />
+										<input type="password" class="wwp-login-input wwp-login-input-epw" id="password" name="pw"  />
 										<label for="password">Password</label>
 										<div class="bar"></div>
 									</div>

@@ -1,8 +1,13 @@
 package com.lotte.emp.controller;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,19 +19,18 @@ import com.lotte.emp.model.dto.EmpDTO;
 import com.lotte.emp.model.dto.SuperDTO;
 import com.lotte.emp.service.EmpService;
 import com.lotte.emp.service.EmpServiceImpl;
-import com.lotte.exception.NotExistException;
+import com.lotte.project.service.ProjectService;
+import com.lotte.project.service.ProjectServiceImpl;
 
 public class EmpController extends HttpServlet{
 
 	EmpService service = EmpServiceImpl.getEmpService();
-	
+	ProjectService pService = ProjectServiceImpl.getProjectService();
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String command = request.getParameter("command");
 		if(command.equals("login")){
-			userLogin(request, response);
-		}else if(command.equals("userList")){
 			userLogin(request, response);
 		}
 	}
@@ -35,13 +39,21 @@ public class EmpController extends HttpServlet{
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
+		Map<String, ArrayList<SuperDTO>> detailProjects = new HashMap<String, ArrayList<SuperDTO>>();
 		try {
 			EmpDTO dto = service.userLogin(Integer.parseInt(id), pw);
-//			System.out.println3(dto.toString());
 			if(dto != null){
+				ArrayList<SuperDTO> sDto = pService.listProgressingPrjManagers(dto.geteIndex());
+				if(sDto != null){
+					for(int i = 0; i<sDto.size(); i++){
+						detailProjects.put("key"+i, pService.listProgressingPrjDtlManagers(sDto.get(i).geteIndex(), sDto.get(i).getpIndex()));
+					}
+				}
 				url ="view/table/tablePersonal.jsp";
 				HttpSession session = request.getSession();
 				session.setAttribute("msg", dto);
+				request.setAttribute("dto", sDto);
+				request.setAttribute("dtlPrj", detailProjects);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
