@@ -1,6 +1,8 @@
+<%@page import="com.lotte.emp.model.dto.SuperDTO, java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/view/common/common_header.jsp" %>
+<% ArrayList<SuperDTO> obj= (ArrayList)request.getAttribute("dto"); %>
         <!-- ============================================================== -->
         <!-- Page Content -->
         <!-- ============================================================== -->
@@ -12,11 +14,12 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /row -->
+                <c:forEach var="item" items="${dto}">
                 <div class="row">
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
                         	<div class="col-sm-10">
-	                            <h3 class="box-title">프로젝트 이름 / 책임자 이름</h3> 
+	                             <h3 class="box-title">${item.pName} / ${item.eName }</h3>
                         	</div>
                         	<div class="col-sm-2">
                         		<button class="btn btn-write" data-toggle="modal" data-target="#writeModal">작성</button>
@@ -62,7 +65,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.row -->              
+                <!-- /.row -->
+                </c:forEach>              
             </div>
 		</div>
 		<%@include file="/view/table/tableWriteModal.jsp" %>

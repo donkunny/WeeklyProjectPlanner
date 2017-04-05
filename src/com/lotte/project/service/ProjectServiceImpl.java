@@ -26,6 +26,8 @@ public class ProjectServiceImpl implements ProjectService{
 			throw new NotExistException("값이 존재하지 않습니다.");
 		return dao;
 	}
+	
+	// 진행 중인 개인 작업을 화면에 테이블로 출력
 	@Override
 	public ArrayList<SuperDTO> listProgressingPrjManagers(int eIndex) throws SQLException {
 		ArrayList<SuperDTO> dao = projectDAO.listProgressingPrjManagers(eIndex);
