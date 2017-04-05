@@ -1,6 +1,10 @@
 package com.lotte.emp.controller;
 
 import java.io.IOException;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -36,7 +40,6 @@ public class EmpController extends HttpServlet{
 		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
 		try {
 			EmpDTO dto = service.userLogin(Integer.parseInt(id), pw);
-//			System.out.println(dto.geteIndex());
 			if(dto != null){
 				ArrayList<SuperDTO> sDto = pService.listProgressingPrjManagers(dto.geteIndex());
 				if(sDto != null){
@@ -56,5 +59,4 @@ public class EmpController extends HttpServlet{
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-	
 }

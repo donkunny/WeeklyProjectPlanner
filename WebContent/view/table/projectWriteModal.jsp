@@ -35,7 +35,9 @@
 						<div class="form-group modal-table">
 							<label class="col-sm-2">담당자</label>
 							<div class="col-sm-2">
+								<a href="emp?command=userList">
 								<input type="button" class="btn" value="추가" data-toggle="modal" data-target="#findEmpModal">
+								</a>
 							</div>
 							<div class="table-responsive col-sm-12"> 
                                 <table class="table"> 
@@ -101,3 +103,6 @@
 		</div>
 	</div>
 </div>
+<script>
+	
+</script>

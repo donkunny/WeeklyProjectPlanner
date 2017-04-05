@@ -76,7 +76,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 		}
 		return list;
 	}
-	@Override //2-1. 업무 테이블 당 제목 출력 (완료 목록)
+	@Override //2-5. 업무 테이블 당 제목 출력 (완료 목록)
 	public ArrayList<SuperDTO> listProgressedPrjManagers(int eIndex) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -139,7 +139,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 		}
 		return list;
 	}
-	@Override //2-1. 업무 테이블의 세부 업무 출력 (완료 목록)
+	@Override //2-5. 업무 테이블의 세부 업무 출력 (완료 목록)
 	public ArrayList<SuperDTO> listProgressedPrjDtlManagers(int eIndex, int pIndex) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
