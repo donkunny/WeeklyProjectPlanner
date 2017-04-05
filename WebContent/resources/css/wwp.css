@@ -1,0 +1,90 @@
+ body {
+ 	font-family: 'RobotoDraft', 'Roboto', sans-serif;
+ }
+ 
+ .login {
+ }
+ 
+ .login .col-sm-6 {
+ 	padding:0;
+ }
+ 
+ .wwp-login {
+	background-color: rgb(255, 255, 255);
+    padding: 10% 0 0 0;
+    box-sizing: border-box;
+    border-radius: 5px 5px 0 0;
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 3px, rgba(0, 0, 0, 0.239216) 0px 1px 2px;
+    position: relative;
+    transition: 0.3s ease;
+        margin: 0px 3%;
+}
+
+.wwp-login-back {
+	background-color: rgb(250, 250, 250);
+	margin: 0px 5%;
+	padding: 5px;
+}
+
+.wwp-login h1 {
+	text-align: left;
+    font-size: 32px;
+    font-weight: 600;
+    color: #e74c3c;
+    border-left: 5px solid #e74c3c;
+    padding: 10px 0 10px 50px;
+    font-family: 'RobotoDraft', 'Roboto', sans-serif;
+}
+
+.wwp-login h2 {
+	text-align: left;
+    font-weight: 700;
+    font-size: 30px;
+    margin-top: 1px;
+}
+
+.wwp-login hr {
+	max-width: 100%;
+    border-color: white;
+}
+
+.wwp-login-card {
+	padding: 5% 0 0 0;
+}
+
+.wwp-login a {
+	text-align: left;
+    font-weight: 700;
+    font-size: 30px;
+    margin-top: 1px;
+}
+
+.wwp-login-input {
+	height: 52px;
+	font-size: 16px;
+	display: inline-table;
+    margin: 5px 0px 5px 0;
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url(https://a0.muscache.com/airbnb/static/signinup/text-field-icons-72d5ec863b1ef7c22391015ec8af5906.png);
+    background-repeat: no-repeat;
+    background-size: 40px 171px;
+    border: 0px;
+    box-shadow: inset 0 0px 0px;
+}
+
+.wwp-login-input-enum {
+	background-position: right 16px;
+}
+
+.wwp-login-input-epw {
+	background-position: right -83px;
+}
+
+.wwp-login-btn {
+	border-radius: 4px;
+    width: 100%;
+    height: 52px;
+    margin-top: 30px;
+    background-color: #e74c3c;
+    font-size: 16px;
+}
