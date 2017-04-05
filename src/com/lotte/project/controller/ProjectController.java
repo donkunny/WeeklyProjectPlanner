@@ -22,9 +22,8 @@ public class ProjectController extends HttpServlet{
 		System.out.println("command : " + command);
 		String path = "login.jsp";
 		
-		if("listAll".equals(command)){
-			path = listAllProjects(request, response);
-//			PageMove.
+		if("mlistAll".equals(command)){
+			mlistAll(request, response);			
 		} else if("".equals(command)) {			
 			
 		} else if("".equals(command)) {			
@@ -34,26 +33,17 @@ public class ProjectController extends HttpServlet{
 		}
 	}
 	
-	// 모든 프로젝트 리스트를 화면에 출력
-	public void listAllProjects2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String url = ""; 	// 에러 메시지 화면
+	// 개인 프로젝트 테이블을 화면에 출력
+	public void mlistAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
 		try {
-			request.setAttribute("projectAll", service.listAllProjects());
-			url = "view/projectList.jsp";
+			request.setAttribute("mlistAll", service.mlistAllProjects());
+			url = "view/table/management/finishChartProjectTeam.jsp";
 		}catch(Exception e){
 			request.setAttribute("errorMsg", e.getMessage());
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
-	}
-	
-	// 개인 프로젝트 테이블을 화면에 출력
-	public void listAllPersonalProjects(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try{
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 	
 	public String listAllProjects(HttpServletRequest request, HttpServletResponse response) {

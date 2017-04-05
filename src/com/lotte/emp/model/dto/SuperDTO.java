@@ -10,8 +10,11 @@ public class SuperDTO {
 	
 	//Emp
 	private int eIndex; 				//사원코드
+	private int eHeadIndex; 		//책임자코드
 	private int eNum; 				//사원번호(아이디)
 	private String eName; 			//사원이름
+	private String eHeadName; 	//책임자이름
+
 	private String ePassword;		//비밀번호
 	private Date eHiredate; 		//입사일
 	private String ePosition; 		//직책
@@ -221,6 +224,22 @@ public class SuperDTO {
 
 	public void setPtIndex(int ptIndex) {
 		this.ptIndex = ptIndex;
+	}
+	
+	public String geteHeadName() {
+		return eHeadName;
+	}
+
+	public void seteHeadName(String eHeadName) {
+		this.eHeadName = eHeadName;
+	}
+
+	public int geteHeadIndex() {
+		return eHeadIndex;
+	}
+
+	public void seteHeadIndex(int eHeadIndex) {
+		this.eHeadIndex = eHeadIndex;
 	}
 
 	@Override

@@ -48,5 +48,19 @@ public class ProjectServiceImpl implements ProjectService{
 		ArrayList<SuperDTO> dao = projectDAO.listProgressedPrjDtlManagers(eIndex, pIndex);
 		return dao;
 	}
+	@Override
+	public ArrayList<SuperDTO> mlistAllProjects() throws SQLException, NotExistException {
+		ArrayList<SuperDTO> dao = projectDAO.mlistAllProjects();
+		if(dao == null)
+			throw new NotExistException("값이 존재하지 않습니다.");
+		return dao;
+	}
+	@Override
+	public ArrayList<SuperDTO> slistAllProjects() throws SQLException, NotExistException {
+		ArrayList<SuperDTO> dao = projectDAO.slistAllProjects();
+		if(dao == null)
+			throw new NotExistException("값이 존재하지 않습니다.");
+		return dao;
+	}
 	
 }

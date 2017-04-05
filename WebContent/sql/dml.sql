@@ -1,11 +1,11 @@
-insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, '백화점 IS팀', '지원담당');   
-insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, '백화점 IS팀', '영업담당');   
-insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, '백화점 IS팀', '점포담당');   
-insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' K-7 IS팀', '지원담당');   
-insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' K-7 IS팀', '영업담당');   
-insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' K-7 IS팀', '점포담당');   
-insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' 렌탈 IS팀', '지원담당');   
-insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' 렌탈 IS팀', '영업담당');   
+insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, '백화점 IS팀', '지원');   
+insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, '백화점 IS팀', '영업');   
+insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, '백화점 IS팀', '점포');   
+insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' K-7 IS팀', '지원');   
+insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' K-7 IS팀', '영업');   
+insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' K-7 IS팀', '점포');   
+insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' 렌탈 IS팀', '지원');   
+insert into Department (dIndex, dName, dPart) values(SEQ_D.NEXTVAL, ' 렌탈 IS팀', '영업');   
 
 insert into Employee (eIndex, eNum, eName, ePassword, eHiredate, ePosition, eTel, dIndex) values(SEQ_E.NEXTVAL,'90001','김동혁','1234','1999-02-13','수석','010-7894-1234',1);
 insert into Employee (eIndex, eNum, eName, ePassword, eHiredate, ePosition, eTel, dIndex) values(SEQ_E.NEXTVAL,'90002','김진우','2345','2003-03-08','수석','010-8452-1237',2);
