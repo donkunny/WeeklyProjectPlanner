@@ -25,11 +25,13 @@ public class EmpDAOImpl implements EmpDAO{
 		
 		try {
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select * from employee where eNum = ? ");		
+			pstmt = con.prepareStatement("select * from employee where eNum=? and ePassword=?");		
 			pstmt.setInt(1, id);
+			pstmt.setString(2, pw);
 			rset = pstmt.executeQuery();
-			if (rset.next() && rset.getString(2).equals(pw)) {
-					result = new EmpDTO(rset.getInt(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getDate(5), rset.getString(6), rset.getString(7), rset.getInt(8));
+			if (rset.next()) {
+//				System.out.println(rset.getString(2));
+				result = new EmpDTO(rset.getInt(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getDate(5), rset.getString(6), rset.getString(7), rset.getInt(8));
 			}
 		} finally {
 			DBUtil.close(con, pstmt);

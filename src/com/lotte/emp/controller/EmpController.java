@@ -31,7 +31,7 @@ public class EmpController extends HttpServlet{
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String url = ""; // 에러 창으로 이동
-		System.out.println(id + " " + pw);
+//		System.out.println(id + " " + pw);
 		try {
 			EmpDTO dto = service.userLogin(Integer.parseInt(id), pw);
 			System.out.println(dto.toString());
