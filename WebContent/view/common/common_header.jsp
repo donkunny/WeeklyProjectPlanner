@@ -118,7 +118,7 @@
                     <li><a href="#" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>개인<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="javascript:void(0);" onclick="return pageMove('personalProgress');"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>진행 업무</a></li>
-                            <li><a href="javascript:;"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>완료 업무</a></li>
+                            <li><a href="javascript:void(0)" onclick="return pageMove('personalCompletedProgress');"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>완료 업무</a></li>
                         </ul>
                     </li>
                     
