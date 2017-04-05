@@ -95,12 +95,12 @@
 							<form name="loginform"  role="form" >
 								<div class="wwp-login-card">
 									<div class="input-container"> 
-										<input type="text" class="wwp-login-input wwp-login-input-enum" id="username"  name="id" required="required" />
+										<input type="text" class="wwp-login-input wwp-login-input-enum" id="username"  name="id"  value="" required="required"/>
 										<label for="username">Username</label>
 										<div class="bar"></div>
 									</div>
 									<div class="input-container">
-										<input type="password" class="wwp-login-input wwp-login-input-epw" id="password" name="pw" required="required" />
+										<input type="password" class="wwp-login-input wwp-login-input-epw" id="password" name="pw" value="" required="required" />
 										<label for="password">Password</label>
 										<div class="bar"></div>
 									</div>
@@ -108,6 +108,7 @@
 										<button id="loginBtn"  onclick="login()">
 											<span>Login</span>
 										</button>
+									</div>
 									</div>
 								</form>	
 								<div>
@@ -142,14 +143,19 @@
 	<script src="<%=root %>/resources/js/creative.min.js"></script>
 	<script src="<%=root %>/resources/js/index.js"></script>
 
-	<!-- 로그인 화면 이동 -->
+	<!-- 로그인 화면 이동 / 실패시 실패 화면으로 이동 -->
 	<script src="<%=root %>/script/jquery-3.2.0.js"></script>
 	<script type="text/javascript">
 		var formObj = $("form[role='form']");
 		function login(){
-			formObj.attr("action", "<%=pageContext.getServletContext().getContextPath()%>/emp");
-			formObj.attr("method", "post");
-			formObj.submit();
+// 			alert($("#password").val() + " " + $("#username").val());
+			if($("#password").val() == "" || $("#username").val() == ""){
+				alert("아이디와 비밀번호를 입력하세요.");
+			} else {
+				formObj.attr("action", "<%=pageContext.getServletContext().getContextPath()%>/emp");
+				formObj.attr("method", "post");
+				formObj.submit();
+			}
 		}	
 	</script>
 	
