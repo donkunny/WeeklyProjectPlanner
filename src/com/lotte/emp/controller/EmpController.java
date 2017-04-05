@@ -36,9 +36,11 @@ public class EmpController extends HttpServlet{
 			personalProgress(request, response);
 		} else if("personalCompletedProgress".equals(command)) {
 			personalCompletedProgress(request, response);
+		} else if("userList".equals(command)) {
+			userList(request, response);
 		} else if("".equals(command)) {
 			
-		}
+		} 
 	}
 
 	public void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -113,6 +115,21 @@ public class EmpController extends HttpServlet{
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	public void userList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "view/error/listError.jsp"; // 에러 창으로 이동
+		try {
+			ArrayList<SuperDTO> dto = service.userList();
+			if(dto != null){
+				url ="view/table/findEmpModal.jsp";
+				request.setAttribute("dtoList", dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+		
 	}
 
 }
