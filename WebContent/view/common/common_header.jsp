@@ -20,7 +20,6 @@
     <!-- animation CSS -->
     <link href="${pageContext.request.contextPath}/resources/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
-
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet"> 
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker3.css" rel="stylesheet"> 
     <link href="${pageContext.request.contextPath}/resources/css/table.css?v=1" rel="stylesheet">    
@@ -30,7 +29,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/vis.min.css" rel="stylesheet" type="text/css" />
     <link href="${pageContext.request.contextPath}/resources/css/vischart.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -69,13 +68,16 @@
                 <!-- /Logo -->
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="${pageContext.request.contextPath}/resources/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b><span class="caret"></span> </a>
+
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="${pageContext.request.contextPath}/resources/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">${msg.eName}</b><span class="caret"></span> </a>
+
+
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li>
                                 <div class="dw-user-box">
                                     <div class="u-img"><img src="${pageContext.request.contextPath}/resources/plugins/images/users/varun.jpg" alt="user" /></div>
                                     <div class="u-text">
-                                        <h4>Steave Jobs</h4>
+                                        <h4>${msg.eName}</h4>
                                         <p class="text-muted">varun@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                 </div>
                             </li>
@@ -110,8 +112,8 @@
                     <li style="padding: 70px 0 0;"><a href="index.html" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a> </li>
                     <li><a href="#" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>개인<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="${pageContext.request.contextPath}/view/table/tablePersonal.jsp"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>진행 업무</a></li>
-                            <li><a href="${pageContext.request.contextPath}/view/table/tablePersonal.jsp"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>완료 업무</a></li>
+                            <li><a href="${pageContext.request.contextPath}/view/table/tablePersonal.jsp?id=${msg.eIndex}"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>진행 업무</a></li>
+                            <li><a href="${pageContext.request.contextPath}/view/table/tablePersonal.jsp?id=${msg.eIndex}"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>완료 업무</a></li>
                         </ul>
                     </li>
                     

@@ -19,13 +19,23 @@ public class ProjectController extends HttpServlet{
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String command = request.getParameter("command");
-		if(command.equals("listAll")){
-			listAllProjects(request, response);
-		} 
+		System.out.println("command : " + command);
+		String path = "login.jsp";
+		
+		if("listAll".equals(command)){
+			path = listAllProjects(request, response);
+			PageMove.
+		} else if("".equals(command)) {			
+			
+		} else if("".equals(command)) {			
+			
+		} else if("".equals(command)) {			
+			
+		}
 	}
 	
 	// 모든 프로젝트 리스트를 화면에 출력
-	public void listAllProjects(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public void listAllProjects2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String url = ""; 	// 에러 메시지 화면
 		try {
 			request.setAttribute("projectAll", service.listAllProjects());
@@ -44,6 +54,12 @@ public class ProjectController extends HttpServlet{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	public String listAllProjects(HttpServletRequest request, HttpServletResponse response) {
+		
+		return null;
+		
 	}
 	
 	
