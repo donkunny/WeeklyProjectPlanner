@@ -1,6 +1,10 @@
 package com.lotte.emp.controller;
 
 import java.io.IOException;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +42,6 @@ public class EmpController extends HttpServlet{
 		Map<String, ArrayList<SuperDTO>> detailProjects = new HashMap<String, ArrayList<SuperDTO>>();
 		try {
 			EmpDTO dto = service.userLogin(Integer.parseInt(id), pw);
-//			System.out.println(dto.geteIndex());
 			if(dto != null){
 				ArrayList<SuperDTO> sDto = pService.listProgressingPrjManagers(dto.geteIndex());
 				if(sDto != null){
@@ -58,6 +61,21 @@ public class EmpController extends HttpServlet{
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 	
-	
+	//public ArrayList<SuperDTO> userList() throws SQLException;
+	public void userList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = null; // 에러 창으로 이동
+		System.out.println(1);
+		try {System.out.println(2);
+			ArrayList<SuperDTO> dto = service.userList();
+			if(dto != null){
+				url ="view/table/findEmpModal.jsp";
+				HttpSession session = request.getSession();
+				session.setAttribute("dtoList", dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}System.out.println(3);
+		request.getRequestDispatcher(url).forward(request, response);
+	}
 	
 }
