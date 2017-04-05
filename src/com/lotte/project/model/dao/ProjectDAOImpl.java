@@ -57,8 +57,8 @@ public class ProjectDAOImpl implements ProjectDAO{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("select p.pName, e2.eName,"
 					+ "e2.eIndex, p.pIndex, pt.ptIndex"
-					+ "from Employee e1, Employee e2, Project p, ProjectTeam pt"
-					+ "where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress < 100");
+					+ " from Employee e1, Employee e2, Project p, ProjectTeam pt"
+					+ " where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress < 100");
 			pstmt.setInt(1, eIndex);
 			rset = pstmt.executeQuery();
 			list = new ArrayList<SuperDTO>();
@@ -76,7 +76,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 		}
 		return list;
 	}
-	@Override //2-1. 업무 테이블 당 제목 출력 (완료 목록)
+	@Override //2-5. 업무 테이블 당 제목 출력 (완료 목록)
 	public ArrayList<SuperDTO> listProgressedPrjManagers(int eIndex) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -86,8 +86,8 @@ public class ProjectDAOImpl implements ProjectDAO{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("select p.pName, e2.eName,"
 					+ "e2.eIndex, p.pIndex, pt.ptIndex"
-					+ "from Employee e1, Employee e2, Project p, ProjectTeam pt"
-					+ "where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress = 100");
+					+ " from Employee e1, Employee e2, Project p, ProjectTeam pt"
+					+ " where e1.eIndex = ? and e1.eIndex = pt.eIndex and pt.pIndex = p.pIndex and p.eIndex = e2.eIndex and p.pProgress = 100");
 			pstmt.setInt(1, eIndex);
 			rset = pstmt.executeQuery();
 			list = new ArrayList<SuperDTO>();
@@ -116,8 +116,8 @@ public class ProjectDAOImpl implements ProjectDAO{
 			pstmt = con.prepareStatement("select d.dPart, pd.pdName, e.eName, "
 					+ "pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
 					+ "d.dIndex, pd.pdIndex"
-					+ "from Employee e, Department d, ProjectDetail pd, Project p"
-					+ "where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress < 100 and p.pIndex = ?");
+					+ " from Employee e, Department d, ProjectDetail pd, Project p"
+					+ " where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress < 100 and p.pIndex = ?");
 			pstmt.setInt(1, eIndex);
 			pstmt.setInt(2, pIndex);
 			rset = pstmt.executeQuery();
@@ -139,7 +139,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 		}
 		return list;
 	}
-	@Override //2-1. 업무 테이블의 세부 업무 출력 (완료 목록)
+	@Override //2-5. 업무 테이블의 세부 업무 출력 (완료 목록)
 	public ArrayList<SuperDTO> listProgressedPrjDtlManagers(int eIndex, int pIndex) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -150,8 +150,8 @@ public class ProjectDAOImpl implements ProjectDAO{
 			pstmt = con.prepareStatement("select d.dPart, pd.pdName, e.eName, "
 					+ "pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
 					+ "d.dIndex, pd.pdIndex"
-					+ "from Employee e, Department d, ProjectDetail pd, Project p"
-					+ "where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress = 100 and p.pIndex = ?");
+					+ " from Employee e, Department d, ProjectDetail pd, Project p"
+					+ " where e.eIndex = ? and e.dIndex = d.dIndex and e.eIndex = pd.eIndex and pd.pdProgress = 100 and p.pIndex = ?");
 			pstmt.setInt(1, eIndex);
 			pstmt.setInt(2, pIndex);
 			rset = pstmt.executeQuery();

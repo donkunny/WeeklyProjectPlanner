@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.lotte.emp.model.dto.EmpDTO;
+import com.lotte.emp.model.dto.SuperDTO;
 import com.lotte.util.DBUtil;
 
 public class EmpDAOImpl implements EmpDAO{
@@ -36,5 +38,31 @@ public class EmpDAOImpl implements EmpDAO{
 			DBUtil.close(con, pstmt);
 		}
 		return result;
+	}
+	@Override
+	public ArrayList<SuperDTO> userList() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select e.eIndex, e.eNum, e.eName, e.ePosition, d.dName, d.dPart from Employee e, Department d");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while(rset.next()){
+				SuperDTO tmp = new SuperDTO();
+				tmp.seteIndex(rset.getInt(1));
+				tmp.seteNum(rset.getInt(2));
+				tmp.seteName(rset.getString(3));
+				tmp.setePosition(rset.getString(4));
+				tmp.setdName(rset.getString(5));
+				tmp.setdPart(rset.getString(6));
+				list.add(tmp);
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
 	}
 }
