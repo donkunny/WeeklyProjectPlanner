@@ -19,11 +19,14 @@
     <!-- animation CSS -->
     <link href="<%=root %>/resources/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<%=root %>/resources/css/style.css?v=1" rel="stylesheet"> 
+    <link href="<%=root %>/resources/css/style.css" rel="stylesheet"> 
     <link href="<%=root %>/resources/css/bootstrap-datepicker3.css" rel="stylesheet"> 
-    <link href="<%=root %>/resources/css/table.css?v=1" rel="stylesheet">
+    <link href="<%=root %>/resources/css/table.css?v=1" rel="stylesheet">    
     <!-- color CSS -->
     <link href="<%=root %>/resources/css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- Chart CSS -->
+    <link href="<%=root %>/resources/css/vis.min.css" rel="stylesheet" type="text/css" />
+    <link href="<%=root %>/resources/css/vischart.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
