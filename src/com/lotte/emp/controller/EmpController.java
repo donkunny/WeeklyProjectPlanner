@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,14 +37,15 @@ public class EmpController extends HttpServlet{
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
-		Map<String, ArrayList<SuperDTO>> detailProjects = new HashMap<String, ArrayList<SuperDTO>>();
+		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
 		try {
 			EmpDTO dto = service.userLogin(Integer.parseInt(id), pw);
 			if(dto != null){
 				ArrayList<SuperDTO> sDto = pService.listProgressingPrjManagers(dto.geteIndex());
 				if(sDto != null){
 					for(int i = 0; i<sDto.size(); i++){
-						detailProjects.put("key"+i, pService.listProgressingPrjDtlManagers(sDto.get(i).geteIndex(), sDto.get(i).getpIndex()));
+//						System.out.println(sDto.get(i).geteIndex() +", " + sDto.get(i).getpIndex());
+						detailProjects.add(pService.listProgressingPrjDtlManagers(sDto.get(i).geteIndex(), sDto.get(i).getpIndex()));
 					}
 				}
 				url ="view/table/tablePersonal.jsp";
@@ -60,22 +59,4 @@ public class EmpController extends HttpServlet{
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-	
-	//public ArrayList<SuperDTO> userList() throws SQLException;
-	public void userList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = null; // 에러 창으로 이동
-		System.out.println(1);
-		try {System.out.println(2);
-			ArrayList<SuperDTO> dto = service.userList();
-			if(dto != null){
-				url ="view/table/findEmpModal.jsp";
-				HttpSession session = request.getSession();
-				session.setAttribute("dtoList", dto);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}System.out.println(3);
-		request.getRequestDispatcher(url).forward(request, response);
-	}
-	
 }
