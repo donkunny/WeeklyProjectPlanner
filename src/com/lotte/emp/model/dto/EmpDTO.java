@@ -12,8 +12,7 @@ public class EmpDTO {
 	private String eTel; 				//전화번호
 	private int dIndex; 				//담당코드
 	
-	public EmpDTO() {}
-	
+	public EmpDTO() {}	
 	public EmpDTO(int eIndex, int eNum, String eName, String ePassword, Date eHiredate, String ePosition, String eTel, int dIndex) {
 		this.eIndex = eIndex;
 		this.eNum = eNum;

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.lotte.emp.model.dto.SuperDTO;
 import com.lotte.project.model.dto.ProjectDTO;
 import com.lotte.util.DBUtil;
 
@@ -45,5 +46,21 @@ public class ProjectDAOImpl implements ProjectDAO{
 			DBUtil.close(con, pstmt, rset);
 		}
 		return list;
+	}
+	@Override
+	public ArrayList<SuperDTO> listProgressingPrjManagers() throws SQLException {
+		return null;
+	}
+	@Override
+	public ArrayList<SuperDTO> listProgressedPrjManagers() throws SQLException {
+		return null;
+	}
+	@Override
+	public ArrayList<SuperDTO> listProgressedPrjDtlManagers() throws SQLException {
+		return null;
+	}
+	@Override
+	public ArrayList<SuperDTO> listProgressingPrjDtlManagers() throws SQLException {
+		return null;
 	}
 }

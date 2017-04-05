@@ -8,4 +8,5 @@ public interface EmpDAO {
 
 	//check login user id && name
 	public EmpDTO userLogin(int id, String pw) throws SQLException;
+	
 }
