@@ -4,7 +4,7 @@
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
-		<form method="post" action="">
+		<form method="post" action="<%=pageContext.getServletContext().getContextPath()%>/project">
 		<div class="modal-content">
 			<div class="modal-header modal-table-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>

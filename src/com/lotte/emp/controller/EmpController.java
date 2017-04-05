@@ -62,8 +62,8 @@ public class EmpController extends HttpServlet{
 				url ="view/table/tablePersonal.jsp";
 				HttpSession session = request.getSession();
 				session.setAttribute("msg", dto);
-				session.setAttribute("dto", sDto);
-				session.setAttribute("dtlPrj", detailProjects);
+				request.setAttribute("dto", sDto);
+				request.setAttribute("dtlPrj", detailProjects);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

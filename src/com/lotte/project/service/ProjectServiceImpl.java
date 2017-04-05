@@ -7,6 +7,7 @@ import com.lotte.emp.model.dto.SuperDTO;
 import com.lotte.exception.NotExistException;
 import com.lotte.project.model.dao.ProjectDAO;
 import com.lotte.project.model.dao.ProjectDAOImpl;
+import com.lotte.project.model.dto.PrjDetailDTO;
 import com.lotte.project.model.dto.ProjectDTO;
 
 public class ProjectServiceImpl implements ProjectService{
@@ -61,6 +62,10 @@ public class ProjectServiceImpl implements ProjectService{
 		if(dao == null)
 			throw new NotExistException("값이 존재하지 않습니다.");
 		return dao;
+	}
+	@Override
+	public boolean insertDetailProject(PrjDetailDTO dto) throws SQLException {
+		return projectDAO.insertDetailProject(dto);
 	}
 	
 }
