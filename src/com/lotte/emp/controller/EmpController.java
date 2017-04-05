@@ -32,8 +32,8 @@ public class EmpController extends HttpServlet{
 		
 		if(command.equals("login")){
 			userLogin(request, response);
-		} else if("pesonalProgress".equals(command)) {
-			
+		} else if("personalProgress".equals(command)) {
+			personalProgress(request, response);
 		} else if("".equals(command)) {
 			
 		} else if("".equals(command)) {
@@ -64,6 +64,29 @@ public class EmpController extends HttpServlet{
 				session.setAttribute("dto", sDto);
 				session.setAttribute("dtlPrj", detailProjects);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	public void personalProgress(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id =Integer.parseInt(request.getParameter("eIndex"));
+		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
+
+		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
+
+		try {
+				ArrayList<SuperDTO> sDto = pService.listProgressingPrjManagers(id);
+				if(sDto != null){
+					for(int i = 0; i<sDto.size(); i++){
+						detailProjects.add(pService.listProgressingPrjDtlManagers(sDto.get(i).geteIndex(), sDto.get(i).getpIndex()));
+					}
+				}
+				url ="view/table/tablePersonal.jsp";
+				HttpSession session = request.getSession();
+				session.setAttribute("dto", sDto);
+				session.setAttribute("dtlPrj", detailProjects);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

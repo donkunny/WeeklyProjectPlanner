@@ -103,6 +103,11 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
+        <form name="common" method="post">
+        	<input type="hidden" name="command" value="">
+        	<input type="hidden" name="eIndex" value="">        	
+        </form>
+                
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav slimscrollsidebar">
                 <div class="sidebar-head">
@@ -112,8 +117,8 @@
                     <li style="padding: 70px 0 0;"><a href="index.html" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a> </li>
                     <li><a href="#" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>개인<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="${pageContext.request.contextPath}/view/table/tablePersonal.jsp?id=${msg.eIndex}"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>진행 업무</a></li>
-                            <li><a href="${pageContext.request.contextPath}/view/table/tablePersonal.jsp?id=${msg.eIndex}"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>완료 업무</a></li>
+                            <li><a href="javascript:;" onclick="pageMove('personalProgress')"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>진행 업무</a></li>
+                            <li><a href="javascript:;"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>완료 업무</a></li>
                         </ul>
                     </li>
                     
@@ -145,3 +150,15 @@
                 </ul>
             </div>
         </div>
+        
+<script type="text/javascript">
+function pageMove(v){
+	document.forms["common"]["command"].value = v;
+	document.forms["common"]["eIndex"].value = ${msg.eIndex};
+	document.common.action = "${pageContext.request.contextPath}/emp"; //서브밋
+	document.common.submit();
+}
+function joinmove(){
+	document.location.href = "<%=root%>/member?act=mvjoin"; // 단순이동
+}
+</script>
