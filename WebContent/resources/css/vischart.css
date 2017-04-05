@@ -1,0 +1,53 @@
+.progress-wrapper {
+    background: #edf1f5;
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    }
+
+    .progress {
+    height: 100%;
+    width: 60%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: #7ace4c;
+    }
+    
+    .progress-mainProject{
+	height: 100%;
+    width: 60%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: #41b3f9;
+    }
+
+    .progress-label {
+      z-index: 1;
+      font-weight: bolder;
+      font-size: 18px;
+   	  color: #2f323e;
+   	  text-align: center;
+    }
+    
+    .chartTable {
+    	padding:0px;
+    }
+    
+    .chartTable-name {
+    text-align: right;
+    }
+    
+    .chartTableMain {
+    	width : 400px;
+    	font-weight: bolder;
+    	font-size: 15px;
+    }
+    
+    .chartTable .col-sm-8 .col-sm-4 {
+    	padding:0px;
+    }

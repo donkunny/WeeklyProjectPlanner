@@ -12,59 +12,67 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /row -->
-                <div class="row">
+                <div class="row"> 
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
-                        	<div class="col-sm-10">
-	                            <h3 class="box-title">프로젝트 리스트</h3> 
-                        	</div>
-                        	<div class="col-sm-2">
-                        		<button class="btn btn-write" data-toggle="modal" data-target="#projectWriteModal">작성</button>
-                        	</div>                        
-                            <div class="table-responsive col-sm-12"> 
-                                <table class="table">
-                                    <thead>   
-                                        <tr>
-                                            <th>#</th>
-                                            <th>파트</th>
-                                            <th>프로젝트 명</th>
-                                            <th>책임자</th>
-                                            <th>시작일</th>
-                                            <th>종료일</th> 
-                                            <th>기간</th>  
-                                            <th>진행률</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="work-table">
-                                        <tr data-toggle="modal" data-target="#projectModifyModal">
-                                            <td>1</td>
-                                            <td>영업</td>
-                                            <td>모듈 개발</td>
-                                            <td>김진우</td>  
-                                            <td>17-02-14</td>
-                                            <td>17-03-22</td>
-                                            <td>45</td>
-                                            <td>55%</td>
-                                    	</tr>
-                                    	<tr>
-                                            <td>2</td>
-                                            <td>영업</td>
-                                            <td>상품 지원</td>
-                                            <td>김진우</td>
-                                            <td>17-03-14</td>
-                                            <td>17-04-12</td>
-                                            <td>49</td>
-                                            <td>76%</td>
-                                    	</tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        	<div class="col-sm-12">  
+	                            <h2 class="box-title">프로젝트 이름1</h2> 
+                        	</div>     
+                        	<div id="visualization" class="col-sm-12"></div>  
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->              
             </div>
 		</div>
+		
+<!-- Chart -->
+<script src="${pageContext.request.contextPath}/resources/js/vis.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<!-- Chart -->
+<script type="text/javascript">
+var groups = new vis.DataSet([
+    {id: 0, content: '<div class="chartTableMain"><div class="col-sm-8 chartTable">프로젝트 이름</div><div class="col-sm-4 chartTable chartTable-name">김진우</div></div>', value: 1},
+    {id: 1, content: '<div class="chartTableMain"><div class="col-sm-8 chartTable">세부업무 이름1</div><div class="col-sm-4 chartTable chartTable-name">김용현</div></div>', value: 2},
+    {id: 2, content: '<div class="chartTableMain"><div class="col-sm-8 chartTable">세부업무 이름2</div><div class="col-sm-4 chartTable chartTable-name">김동혁</div></div>', value: 3},
+  ]);
+
+  // create a dataset with items
+  // note that months are zero-based in the JavaScript Date object, so month 3 is April
+  var items = new vis.DataSet([
+    {id: 0, group: 0, value: 0.2, content: 'item 0', start: new Date(2014, 3, 17), end: new Date(2014, 3, 21)},
+    {id: 2, group: 1, value: 0.2, content: 'item 2', start: new Date(2014, 3, 16), end: new Date(2014, 3, 24)},
+    {id: 5, group: 2, value: 0.2, content: 'item 5', start: new Date(2014, 3, 24), end: new Date(2014, 3, 27)}
+  ]); 
+
+  // create visualization
+  var container = document.getElementById('visualization');
+  var options = {
+		  visibleFrameTemplate: function(item) {
+		      if (item.visibleFrameTemplate) {
+		        return item.visibleFrameTemplate;
+		      } 
+		      var percentage = item.value * 100 + '%';
+		      if(item.group == 0) {			    	  
+		    	  return '<div class="progress-wrapper"><div class="progress-mainProject" style="width:' + percentage + '"></div><label class="progress-label">' + percentage + '<label></div>';
+		      }
+		      return '<div class="progress-wrapper"><div class="progress" style="width:' + percentage + '"></div><label class="progress-label">' + percentage + '<label></div>';			      			     
+		    }, 
+    // option groupOrder can be a property name or a sort function
+    // the sort function must compare two groups and return a value
+    //     > 0 when a > b
+    //     < 0 when a < b
+    //       0 when a == b
+    groupOrder: function (a, b) {
+      return a.value - b.value;
+    }    
+  };
+
+  var timeline = new vis.Timeline(container);
+  timeline.setOptions(options);
+  timeline.setGroups(groups);
+  timeline.setItems(items);
+</script>
 		<%@include file="/view/table/projectWriteModal.jsp" %> 
 		<%@include file="/view/table/projectModifyModal.jsp" %> 
 		<%@include file="/view/table/findEmpModal.jsp" %> 
