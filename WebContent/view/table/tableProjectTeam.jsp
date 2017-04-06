@@ -63,6 +63,7 @@
 		<script>
 		
 		function sendProjectInfo(i,d,p,h,s,e,g) {
+			$('#pIndexSave input').val(i);
 			$("#pjtName input").val(p);
 			$("#partOption select").val(d);
 			$("#phtHdName input").val(h);
@@ -71,6 +72,8 @@
 			$("#progress input").val(g);
 			printMember(i);
 		} 
+		
+
 		</script>	
 	
 		<%@include file="/view/table/projectWriteModal.jsp" %> 

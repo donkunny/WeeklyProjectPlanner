@@ -69,5 +69,10 @@ public class ProjectServiceImpl implements ProjectService{
 			throw new NotExistException("값이 존재하지 않습니다.");
 		return dao;
 	}
+	@Override
+	public boolean deleteProject(int pIndex) throws SQLException, NotExistException {
+		boolean dao = projectDAO.deleteProject(pIndex);
+		return dao;
+	}
 	
 }

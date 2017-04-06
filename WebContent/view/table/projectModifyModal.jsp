@@ -3,7 +3,7 @@
 	<!-- Modal -->
 <div class="modal fade" id="projectModifyModal" role="dialog">
 	<div class="modal-dialog">
-
+		<div id="pIndexSave"><input type="hidden" id="pIndex"></div>
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header modal-table-header">
@@ -16,7 +16,7 @@
 						<div class="form-group modal-table">							
 							<label class="col-sm-12">프로젝트 명</label>							
 							<div id="pjtName" class="col-sm-12">
-								<input type="text" placeholder="프로젝트 이름" class="form-control form-control-line">
+								<input type="text" id="pName" placeholder="프로젝트 이름" class="form-control form-control-line">
 							</div>
 						</div>
 						<div class="form-group modal-table">
@@ -29,13 +29,13 @@
 								</select>
 							</div>
 							<div id="phtHdName" class="col-md-8">
-								<input type="text" placeholder="책임자" class="form-control form-control-line">
+								<input type="text" id="eHeadName" placeholder="책임자" class="form-control form-control-line">
 							</div>
 						</div>						
 						<div class="form-group modal-table">
 							<label class="col-sm-2">담당자</label>
 							<div class="col-sm-2">
-								<input type="button" class="btn" value="추가" onclick="printList()"> <%--  data-toggle="modal" data-target="#findEmpModal">--%>
+								<input type="button" class="btn" value="추가" onclick="printList()"> 
 							</div>
 							<div class="table-responsive col-sm-12"> 
                                 <table class="table"> 
@@ -68,7 +68,7 @@
 				                </div>
 							</div>
 							<div id="progress" class="col-md-4">
-								<input type="text" placeholder="50%" class="form-control form-control-line">
+								<input type="text" id="pProgress" placeholder="0%" class="form-control form-control-line">
 							</div>
 						</div>
 					</form>
@@ -76,8 +76,8 @@
 
 			</div>
 					<div class="modal-footer">
-						<button class="btn btn-success">저장</button>
-						<button class="btn btn-success">삭제</button>
+						<button class="btn btn-success" value="save" onclick="submit(this.value)" >저장</button>
+						<button class="btn btn-success" value="delete" onclick="submit(this.value); javascript:window.location.reload();" data-dismiss="modal">삭제</button>
 						<button type="button" class="btn btn-success" data-dismiss="modal">취소</button>
 					</div>
 		</div>
@@ -99,5 +99,38 @@ function printMember(i){
 			console.log(s);
 		}
 	})
+};
+function submit(v) {
+	if(v == 'save') {
+		$.ajax({
+			url:"${pageContext.request.contextPath}/project",
+			data : {command : "updateProject",
+					pIndex : pIndex.value,
+					pName : pName.value,
+					eHeadName : eHeadName.value,
+					start_date : start_date.value,
+					end_date : end_date,
+					pProgress : pProgress
+					},			
+			type : "post",
+			success : function(data) {
+				alert("변경성공");
+			},
+			error:function(s) {
+				console.log(s);
+			}
+		})
+	} else if(v == 'delete') {
+		$.ajax({
+			url:"${pageContext.request.contextPath}/project",
+			data : {command : "deleteProject",
+					pIndex : pIndex.value
+					},			
+			type : "post",
+			error:function(s) {
+				console.log(s);
+			}
+		})
+	}
 };
 </script>

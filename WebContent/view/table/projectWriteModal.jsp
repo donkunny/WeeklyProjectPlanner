@@ -30,7 +30,7 @@
 								</select>
 							</div>
 							<div class="col-md-8">
-								<input type="text" placeholder="김진우" class="form-control form-control-line">
+								<input type="text" placeholder="책임자" class="form-control form-control-line">
 							</div>
 						</div>						
 						<div class="form-group modal-table">
@@ -97,7 +97,7 @@
 				                </div>
 							</div>
 							<div class="col-md-4">
-								<input type="text" placeholder="50%" class="form-control form-control-line">
+								<input type="text" placeholder="0%" class="form-control form-control-line">
 							</div>
 						</div>
 					</form>
@@ -105,8 +105,8 @@
 
 			</div>
 					<div class="modal-footer">
-						<button class="btn btn-success">저장</button>
-						<button class="btn btn-success">삭제</button>
+						<button class="btn btn-success" >저장</button>
+						<%-- <button class="btn btn-success" >삭제</button>--%>
 						<button type="button" class="btn btn-success" data-dismiss="modal">취소</button>
 					</div>
 		</div>
@@ -129,23 +129,10 @@
         });
 	} 
 	
-	/*function printMemberList(v) {
-		$.ajax({
-			url:"${pageContext.request.contextPath}/emp",
-			data : {command : "memberList",
-					pIndex : v},
-			type : "post",
-			success : function(data) {
-			},
-			error:function(s) {
-				console.log(s);
-			}
-        });
-	}*/
 </script>
 
 <!-- Modal -->
-<div class="modal fade" id="findEmpModal" role="dialog">
+<div class="modal fade" id="findEmpModal" role="dialog" style="z-index : 2000;">
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
@@ -226,13 +213,4 @@
         });
 	}
 	
-
-	$(document).ready(function(){	
-		if($('#txtFilter').val()=="") {
-		    
-		
-		} else {
-		    $("#membertr").show();
-		}
-	});
 </script>

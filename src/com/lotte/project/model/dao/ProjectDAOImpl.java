@@ -260,4 +260,23 @@ public class ProjectDAOImpl implements ProjectDAO{
 		}
 		return list;
 	}
+	@Override
+	public boolean deleteProject(int pIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean result = false;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("delete from Project where pIndex = ? ");
+			pstmt.setInt(1, pIndex);
+			int i = pstmt.executeUpdate();
+			
+			while(i == 1){
+				result = true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return result;
+	}
 }

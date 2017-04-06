@@ -16,4 +16,5 @@ public interface ProjectDAO {
 	public ArrayList<SuperDTO> listProgressingPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
 	public ArrayList<SuperDTO> listProgressedPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
 	public ArrayList<SuperDTO> listProjectManagement(int eIndex) throws SQLException;
+	public boolean deleteProject(int pIndex) throws SQLException;
 }

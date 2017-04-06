@@ -1,16 +1,13 @@
 package com.lotte.project.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.lotte.emp.model.dto.SuperDTO;
 import com.lotte.emp.service.EmpService;
 import com.lotte.emp.service.EmpServiceImpl;
 import com.lotte.project.service.ProjectService;
@@ -33,15 +30,16 @@ public class ProjectController extends HttpServlet{
 			mlistAll(request, response);			
 		} else if("projectTaemManagement".equals(command)) {
 			projectTeamManagement(request, response);
-		} else if("".equals(command)) {			
-			
-		} else if("".equals(command)) {			
-			
+		} else if("updateProject".equals(command)) {			
+			updateProject(request, response);
+		} else if("deleteProject".equals(command)) {			
+			deleteProject(request, response);
 		} else if("".equals(command)) {			
 			
 		}
 	}
 	
+
 	// 개인 프로젝트 테이블을 화면에 출력
 	public void mlistAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
@@ -72,5 +70,20 @@ public class ProjectController extends HttpServlet{
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
+	}
+
+	private void deleteProject(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int pIndex = Integer.parseInt(request.getParameter("pIndex"));
+		
+		try {
+			request.setAttribute("pjtList", service.deleteProject(pIndex));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(" 삭제 - 프로젝트 코드 : " + pIndex);
+	}
+
+	private void updateProject(HttpServletRequest request, HttpServletResponse response) {
+		
 	}
 }
