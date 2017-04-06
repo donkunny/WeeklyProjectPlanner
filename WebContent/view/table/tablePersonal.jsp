@@ -21,7 +21,7 @@
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
                         	<div class="col-sm-10">
-	                             <h3 class="box-title">${project.pName} / ${project.eName }</h3>
+	                             <h3 class="box-title">${project.pName} / ${project.eHeadName }</h3>
                         	</div>
                         	                    
                             <div class="table-responsive col-sm-12"> 
@@ -62,6 +62,11 @@
                 </c:forEach>              
             </div>
 		</div>
+		<script type="text/javascript">
+			if($(requestScope.successMsg) != ''){
+				alert("입력 성공!");
+			}
+		</script>
 		<%@include file="/view/table/tableWriteModal.jsp" %>
 		<%@include file="/view/table/tableModifyModal.jsp" %>
 		<%@include file="/view/common/common_footer.jsp" %>		

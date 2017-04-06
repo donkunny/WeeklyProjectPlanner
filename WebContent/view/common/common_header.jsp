@@ -22,7 +22,7 @@
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet"> 
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker3.css" rel="stylesheet"> 
-    <link href="${pageContext.request.contextPath}/resources/css/table.css?v=1" rel="stylesheet">    
+    <link href="${pageContext.request.contextPath}/resources/css/table.css?v=2" rel="stylesheet">    
     <!-- color CSS -->
     <link href="${pageContext.request.contextPath}/resources/css/colors/default.css" id="theme" rel="stylesheet">
     <!-- Chart CSS -->

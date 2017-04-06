@@ -67,5 +67,12 @@ public class ProjectServiceImpl implements ProjectService{
 	public boolean insertDetailProject(PrjDetailDTO dto) throws SQLException {
 		return projectDAO.insertDetailProject(dto);
 	}
-	
+	@Override
+	public String selectDpartbyDIndex(int dIndex) throws SQLException {
+		return projectDAO.selectDpartbyDIndex(dIndex);
+	}
+	@Override
+	public int selectPIndexbyPdIndex(int pdIndex) throws SQLException {
+		return projectDAO.selectPIndexbyPdIndex(pdIndex);
+	}
 }

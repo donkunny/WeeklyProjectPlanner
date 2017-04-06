@@ -16,11 +16,10 @@ public class PrjDetailDTO{
 	
 	
 	public PrjDetailDTO() { }
-	public PrjDetailDTO(int pIndex, int eIndex, int pdIndex, String pdName, double pdProgress, Date pdStartDate, Date pdEndDate, Date pdWriteDate) {
+	public PrjDetailDTO(int pIndex, int eIndex, String pdName, double pdProgress, Date pdStartDate, Date pdEndDate, Date pdWriteDate) {
 		super();
 		this.pIndex = pIndex;
 		this.eIndex = eIndex;
-		this.pdIndex = pdIndex;
 		this.pdName = pdName;
 		this.pdProgress = pdProgress;
 		this.pdStartDate = pdStartDate;

@@ -26,12 +26,12 @@
 
     
     <script>
-		var date_start_input = $('input[name="start_date"]'); //our date input has the name "date"
-		var date_end_input = $('input[name="end_date"]'); //our date input has the name "date"
+		var date_start_input = $('input[name="pdStartDate"]'); //our date input has the name "date"
+		var date_end_input = $('input[name="pdEndDate"]'); //our date input has the name "date"
 		var container = $('.bootstrap-iso form').length > 0 ? $(
 				'.bootstrap-iso form').parent() : "body";
 		var options = {
-			format : 'yy/mm/dd',
+			format : 'yyyy-mm-dd',
 			container : container,
 			todayHighlight : true,
 			autoclose : true,
