@@ -252,5 +252,10 @@ public class ProjectServiceImpl implements ProjectService {
 			throw new NotExistException("값이 존재하지 않습니다.");
 		return dao;
 	}
+	
+	@Override
+	public boolean deleteDetailProject(int pdIndex) throws SQLException {
+		return projectDAO.deleteDetailProject(pdIndex);
+	}
 
 }

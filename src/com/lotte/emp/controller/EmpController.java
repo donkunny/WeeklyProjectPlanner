@@ -50,7 +50,7 @@ public class EmpController extends HttpServlet{
 			insertTeamMember(request, response);
 		} else if("logout".equals(command)) {
 			userLogout(request, response);
-		}
+		} 
 	}
 	
 	public void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -78,13 +78,15 @@ public class EmpController extends HttpServlet{
 				session.setAttribute("msg", dto);
 				request.setAttribute("dto", sDto);
 				request.setAttribute("dtlPrj", detailProjects);
-				request.setAttribute("dPart", dPart);
+				session.setAttribute("dPart", dPart);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
+	
+	
 	
 	public void userLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String root = request.getContextPath();

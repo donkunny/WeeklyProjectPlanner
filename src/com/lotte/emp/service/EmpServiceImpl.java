@@ -34,6 +34,7 @@ public class EmpServiceImpl implements EmpService{
 	@Override
 	public boolean insertTeamMember(int eIndex, int pIndex) throws SQLException {
 		return dao.insertTeamMember(eIndex, pIndex);
+	}
 	public boolean userCheck(int eIndex) throws SQLException {
 		return dao.userCheck(eIndex);
 	}

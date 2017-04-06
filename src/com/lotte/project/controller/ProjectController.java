@@ -57,8 +57,28 @@ public class ProjectController extends HttpServlet{
 			updateProject(request, response);
 		} else if("deleteProject".equals(command)) {			
 			deleteProject(request, response);
-		}
+		} else if("deleteDtlPrj".equals(command)) {			
+			deleteDetailProject(request, response);
+  		}
 		
+	}
+	
+	public void deleteDetailProject(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "view/error/listError.jsp"; // 에러 창으로 이동
+		int pdIndex = Integer.parseInt(request.getParameter("pdIndex"));
+		int eIndex = Integer.parseInt(request.getParameter("eIndex"));
+		try{
+			boolean result = service.deleteDetailProject(pdIndex);
+			if(result){
+				String root = request.getContextPath();
+				url =  root + "/emp?command=personalProgress";
+			}
+		}  catch(Exception e){
+			e.printStackTrace();
+		}
+		HttpSession session = request.getSession();
+		session.setAttribute("eIndex", eIndex);
+		response.sendRedirect(url);
 	}
 
 	// 개인 프로젝트 테이블을 화면에 출력
