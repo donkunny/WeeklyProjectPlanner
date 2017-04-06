@@ -186,7 +186,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public ArrayList<SuperDTO> mlistAllProjects() throws SQLException {
+	public ArrayList<SuperDTO> mplistProgress() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -214,6 +214,29 @@ public class ProjectDAOImpl implements ProjectDAO {
 				tmp.setPdIndex(rset.getInt(8));
 				tmp.setdPart(rset.getString(9));
 				list.add(tmp);
+		SuperDTO sdto = null;
+		try {
+			con = DBUtil.getConnection();
+			// pstmt =
+			// con.prepareStatement(sqlBundle.getString("selectAllProjects"));
+			// // 에러 발생
+			pstmt = con.prepareStatement(
+					"select p.pName, e.eName, p.pProgress, p.pStartDate, p.pEndDate, p.pIndex, e.eIndex "
+							+ "from Project p, Employee e, Department d "
+							+ "where p.eIndex = e.eIndex and e.dIndex = d.dIndex and d.dIndex = 2 and p.pProgress<100"
+							+"order by e.eName asc, p.pstartdate asc");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while (rset.next()) {
+				sdto = new SuperDTO();
+				sdto.setpName(rset.getString(1));
+				sdto.seteName(rset.getString(2));
+				sdto.setpProgress(rset.getDouble(3));
+				sdto.setpStartDate(rset.getDate(4));
+				sdto.setpEndDate(rset.getDate(5));
+				sdto.setpIndex(rset.getInt(6));
+				sdto.seteIndex(rset.getInt(7));
+				list.add(sdto);
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rset);
@@ -222,8 +245,252 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
-	public ArrayList<SuperDTO> slistAllProjects() throws SQLException {
-		return null;
+	public ArrayList<SuperDTO> mpdlistProgress() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		SuperDTO sdto = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select pd.pdName, e.eName, pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
+					+ "pd.pdIndex, e.eIndex, p.pIndex " + "from Project p, ProjectDetail pd,Employee e, Department d "
+					+ "where p.pIndex = pd.pIndex and e.eIndex = pd.eIndex and e.dIndex = d.dIndex and d.dindex = 2 and pd.pdProgress<100" 
+					+"order by e.eName asc, pd.pdstartdate asc");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while (rset.next()) {
+				sdto = new SuperDTO();
+				sdto.setPdName(rset.getString(1));
+				sdto.seteName(rset.getString(2));
+				sdto.setPdStartDate(rset.getDate(3));
+				sdto.setPdEndDate(rset.getDate(4));
+				sdto.setPdProgress(rset.getDouble(5));
+				sdto.setPdIndex(rset.getInt(6));
+				sdto.seteIndex(rset.getInt(7));
+				sdto.setpIndex(rset.getInt(8));
+				list.add(sdto);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<SuperDTO> splistProgress() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		SuperDTO sdto = null;
+		try {
+			con = DBUtil.getConnection();
+			// pstmt =
+			// con.prepareStatement(sqlBundle.getString("selectAllProjects"));
+			// // 에러 발생
+			pstmt = con.prepareStatement(
+					"select p.pName, e.eName, p.pProgress, p.pStartDate, p.pEndDate, p.pIndex, e.eIndex "
+							+ "from Project p, Employee e, Department d "
+							+ "where p.eIndex = e.eIndex and e.dIndex = d.dIndex and d.dIndex = 1 and p.pProgress<100 "
+							+"order by e.eName asc, p.pstartdate asc");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while (rset.next()) {
+				sdto = new SuperDTO();
+				sdto.setpName(rset.getString(1));
+				sdto.seteName(rset.getString(2));
+				sdto.setpProgress(rset.getDouble(3));
+				sdto.setpStartDate(rset.getDate(4));
+				sdto.setpEndDate(rset.getDate(5));
+				sdto.setpIndex(rset.getInt(6));
+				sdto.seteIndex(rset.getInt(7));
+				list.add(sdto);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<SuperDTO> spdlistProgress() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		SuperDTO sdto = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select pd.pdName, e.eName, pd.pdStartDate, pd.pdEndDate, pd.pdProgress,"
+					+ "pd.pdIndex, e.eIndex, p.pIndex " + "from Project p, ProjectDetail pd,Employee e, Department d "
+					+ "where p.pIndex = pd.pIndex and e.eIndex = pd.eIndex and e.dIndex = d.dIndex and d.dindex = 1 and pd.pdProgress<100 "
+					+"order by e.eName asc, pd.pdstartdate asc");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while (rset.next()) {
+				sdto = new SuperDTO();
+				sdto.setPdName(rset.getString(1));
+				sdto.seteName(rset.getString(2));
+				sdto.setPdStartDate(rset.getDate(3));
+				sdto.setPdEndDate(rset.getDate(4));
+				sdto.setPdProgress(rset.getDouble(5));
+				sdto.setPdIndex(rset.getInt(6));
+				sdto.seteIndex(rset.getInt(7));
+				sdto.setpIndex(rset.getInt(8));
+				list.add(sdto);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<SuperDTO> mplistComplete() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		SuperDTO sdto = null;
+		try {
+			con = DBUtil.getConnection();
+			// pstmt =
+			// con.prepareStatement(sqlBundle.getString("selectAllProjects"));
+			// // 에러 발생
+			pstmt = con.prepareStatement(
+					"select p.pName, e.eName, p.pProgress, p.pStartDate, p.pEndDate, p.pIndex, e.eIndex "
+							+ "from Project p, Employee e, Department d "
+							+ "where p.eIndex = e.eIndex and e.dIndex = d.dIndex and d.dIndex = 2 and p.pProgress=100 "
+							+"order by e.eName asc, p.pstartdate asc");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while (rset.next()) {
+				sdto = new SuperDTO();
+				sdto.setpName(rset.getString(1));
+				sdto.seteName(rset.getString(2));
+				sdto.setpProgress(rset.getDouble(3));
+				sdto.setpStartDate(rset.getDate(4));
+				sdto.setpEndDate(rset.getDate(5));
+				sdto.setpIndex(rset.getInt(6));
+				sdto.seteIndex(rset.getInt(7));
+				list.add(sdto);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<SuperDTO> splistComplete() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		SuperDTO sdto = null;
+		try {
+			con = DBUtil.getConnection();
+			// pstmt =
+			// con.prepareStatement(sqlBundle.getString("selectAllProjects"));
+			// // 에러 발생
+			pstmt = con.prepareStatement(
+					"select p.pName, e.eName, p.pProgress, p.pStartDate, p.pEndDate, p.pIndex, e.eIndex "
+							+ "from Project p, Employee e, Department d "
+							+ "where p.eIndex = e.eIndex and e.dIndex = d.dIndex and d.dIndex = 1 and p.pProgress=100 "
+							+"order by e.eName asc, p.pstartdate asc");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while (rset.next()) {
+				sdto = new SuperDTO();
+				sdto.setpName(rset.getString(1));
+				sdto.seteName(rset.getString(2));
+				sdto.setpProgress(rset.getDouble(3));
+				sdto.setpStartDate(rset.getDate(4));
+				sdto.setpEndDate(rset.getDate(5));
+				sdto.setpIndex(rset.getInt(6));
+				sdto.seteIndex(rset.getInt(7));
+				list.add(sdto);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<SuperDTO> teamlistProgress() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		SuperDTO sdto = null;
+		try {
+			con = DBUtil.getConnection();
+			// pstmt =
+			// con.prepareStatement(sqlBundle.getString("selectAllProjects"));
+			// // 에러 발생
+			pstmt = con.prepareStatement(
+					"select p.pName, e.eName, p.pProgress, p.pStartDate, p.pEndDate, p.pIndex, e.eIndex, d.dPart "
+							+ "from Project p, Employee e, Department d "
+							+ "where p.eIndex = e.eIndex and e.dIndex = d.dIndex and p.pProgress<100 "
+							+"order by e.eName asc, p.pstartdate asc, dPart asc");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while (rset.next()) {
+				sdto = new SuperDTO();
+				sdto.setpName(rset.getString(1));
+				sdto.seteName(rset.getString(2));
+				sdto.setpProgress(rset.getDouble(3));
+				sdto.setpStartDate(rset.getDate(4));
+				sdto.setpEndDate(rset.getDate(5));
+				sdto.setpIndex(rset.getInt(6));
+				sdto.seteIndex(rset.getInt(7));
+				sdto.setdPart(rset.getString(8));
+				list.add(sdto);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
+	}
+
+	@Override
+
+	public ArrayList<SuperDTO> teamlistComplete() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		SuperDTO sdto = null;
+		try {
+			con = DBUtil.getConnection();
+			// pstmt =
+			// con.prepareStatement(sqlBundle.getString("selectAllProjects"));
+			// // 에러 발생
+			pstmt = con.prepareStatement(
+					"select p.pName, e.eName, p.pProgress, p.pStartDate, p.pEndDate, p.pIndex, e.eIndex, d.dPart "
+							+ "from Project p, Employee e, Department d "
+							+ "where p.eIndex = e.eIndex and e.dIndex = d.dIndex and p.pProgress=100 "
+							+"order by e.eName asc, p.pstartdate asc, dPart asc");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while (rset.next()) {
+				sdto = new SuperDTO();
+				sdto.setpName(rset.getString(1));
+				sdto.seteName(rset.getString(2));
+				sdto.setpProgress(rset.getDouble(3));
+				sdto.setpStartDate(rset.getDate(4));
+				sdto.setpEndDate(rset.getDate(5));
+				sdto.setpIndex(rset.getInt(6));
+				sdto.seteIndex(rset.getInt(7));
+				sdto.setdPart(rset.getString(8));
+				list.add(sdto);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
 	}
 
 	@Override

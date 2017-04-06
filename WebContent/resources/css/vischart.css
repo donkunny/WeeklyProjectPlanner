@@ -32,6 +32,7 @@
       font-size: 18px;
    	  color: #2f323e;
    	  text-align: center;
+   	  position: inherit;
     }
     
     .chartTable {
@@ -43,11 +44,21 @@
     }
     
     .chartTableMain {
-    	width : 400px;
+    	width : 500px;
     	font-weight: bolder;
     	font-size: 15px;
+    	padding: 0px;
     }
     
     .chartTable .col-sm-8 .col-sm-4 {
     	padding:0px;
+    }
+    
+    .project {
+    	border-bottom: 2px solid #2f323e;
+    }
+    
+    .project .chartTable{
+    	font-weight:bold;
+    	font-size: 18px;
     }
