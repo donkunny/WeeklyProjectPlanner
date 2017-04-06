@@ -708,7 +708,7 @@ div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
 .vis-current-time {
 	background-color: #ff7f6e;
 	width: 2px;
-	z-index: 1;
+	z-index: 2;
 	pointer-events: none
 }
 

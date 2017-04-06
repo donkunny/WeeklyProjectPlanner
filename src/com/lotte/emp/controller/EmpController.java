@@ -24,10 +24,16 @@ public class EmpController extends HttpServlet{
 
 	EmpService service = EmpServiceImpl.getEmpService();
 	ProjectService pService = ProjectServiceImpl.getProjectService();
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String command = request.getParameter("command");
+		String command = null;
+		if(request.getParameter("command") == null){
+			command = (String) request.getAttribute("command");
+		} else {
+			command = request.getParameter("command");
+		}
 		System.out.println("command : " + command);
 		
 		if(command.equals("login")){
@@ -42,15 +48,16 @@ public class EmpController extends HttpServlet{
 			memberList(request, response);
 		} else if("insertTeamMember".equals(command)) {
 			insertTeamMember(request, response);
-		} else if("".equals(command)) {
-			
-		} 
+		} else if("logout".equals(command)) {
+			userLogout(request, response);
+		}
 	}
 	
 	public void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
+		String dPart = "";
 
 		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
 
@@ -64,11 +71,14 @@ public class EmpController extends HttpServlet{
 						detailProjects.add(pService.listProgressingPrjDtlManagers(sDto.get(i).geteIndex(), sDto.get(i).getpIndex()));
 					}
 				}
+//				System.out.println(sDto.toString());				
+				dPart = pService.selectDpartbyDIndex(dto.getdIndex());
 				url ="view/table/tablePersonal.jsp";
 				HttpSession session = request.getSession();
 				session.setAttribute("msg", dto);
-				session.setAttribute("dto", sDto);
-				session.setAttribute("dtlPrj", detailProjects);
+				request.setAttribute("dto", sDto);
+				request.setAttribute("dtlPrj", detailProjects);
+				request.setAttribute("dPart", dPart);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,10 +86,29 @@ public class EmpController extends HttpServlet{
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 	
+	public void userLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String root = request.getContextPath();
+		int eIndex =Integer.parseInt(request.getParameter("eIndex"));
+		try {
+			if(service.userCheck(eIndex)) {
+				HttpSession session = request.getSession();
+				session.invalidate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		response.sendRedirect(root+"/view/login/login.jsp");
+	}
+	
 	public void personalProgress(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id =Integer.parseInt(request.getParameter("eIndex"));
+		HttpSession session = request.getSession();
+		int id = -1;
+		if(request.getParameter("eIndex")==null) {
+			id = (Integer)session.getAttribute("eIndex");			
+		} else {			
+			id =Integer.parseInt(request.getParameter("eIndex"));
+		}
 		String url = "view/error/listError.jsp"; // 에러 창으로 이동
-
 		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
 
 		try {
@@ -90,7 +119,7 @@ public class EmpController extends HttpServlet{
 					}
 				}
 				url ="view/table/tablePersonal.jsp";
-				HttpSession session = request.getSession();
+				session = request.getSession();
 				session.setAttribute("dto", sDto);
 				session.setAttribute("dtlPrj", detailProjects);
 		} catch (Exception e) {
@@ -120,6 +149,7 @@ public class EmpController extends HttpServlet{
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
+
 	
 	public void userList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "view/error/listError.jsp"; // 에러 창으로 이동
@@ -165,5 +195,4 @@ public class EmpController extends HttpServlet{
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }

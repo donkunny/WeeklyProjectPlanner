@@ -113,5 +113,37 @@ public class EmpDAOImpl implements EmpDAO{
 			DBUtil.close(con, pstmt);
 		}
 		return result;
+	public String selectDPartbyDIndex(int dIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String dName = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select e.eIndex, e.eNum, e.eName, e.ePosition, d.dName, d.dPart from Employee e, Department d");
+			rset = pstmt.executeQuery();
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return null;
+	}
+    
+	public boolean userCheck(int eIndex) throws SQLException {
+		boolean flag = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select count(eIndex) from Employee e where eIndex = ?");
+			pstmt.setInt(1, eIndex);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				flag = true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return flag;
 	}
 }

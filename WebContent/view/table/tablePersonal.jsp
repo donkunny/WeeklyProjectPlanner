@@ -12,17 +12,18 @@
                         <h4 class="page-title">Basic Table</h4> </div>
                     <!-- /.col-lg-12 -->
                 </div>
+                <div class="col-sm-12" >
+                   		<button class="btn btn-write" data-toggle="modal"  data-target="#writeModal">작성</button>
+                 </div>    
                 <!-- /row -->
                 <c:forEach var="project" items="${dto}" varStatus="status">
                 <div class="row">
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
                         	<div class="col-sm-10">
-	                             <h3 class="box-title">${project.pName} / ${project.eName }</h3>
+	                             <h3 class="box-title">${project.pName} / ${project.eHeadName }</h3>
                         	</div>
-                        	<div class="col-sm-2">
-                        		<button class="btn btn-write" data-toggle="modal" data-target="#writeModal">작성</button>
-                        	</div>                        
+                        	                    
                             <div class="table-responsive col-sm-12"> 
                                 <table class="table"> 
                                     <thead>  
@@ -39,7 +40,9 @@
                                     </thead>
                                     <c:forEach var="detail"  items="${dtlPrj[status.index]}" varStatus="dStatus">
                                     <tbody class="work-table">
-                                        <tr data-toggle="modal" data-target="#modifyModal"> 
+                                        <tr data-toggle="modal" data-target="#modifyModal" 
+                                        onclick="modifyDtlPrj( '${project.pName}', '${detail.dPart}' ,'${project.eHeadName }', '${detail.eName }' , 
+                                         '${detail.pdName}' ,  '${detail.pdStartDate }' , '${detail.pdEndDate }' , '${detail.pdProgress }' , '${detail.pdIndex }' )"> 
                                             <td>${dStatus.count}</td>
                                             <td>${detail.dPart}</td>
                                             <td>${detail.pdName }</td>
@@ -61,6 +64,8 @@
                 </c:forEach>              
             </div>
 		</div>
+		<script type="text/javascript">
+		</script>
 		<%@include file="/view/table/tableWriteModal.jsp" %>
 		<%@include file="/view/table/tableModifyModal.jsp" %>
 		<%@include file="/view/common/common_footer.jsp" %>		
