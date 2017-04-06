@@ -43,8 +43,7 @@ public class DBUtil {
 		}
 	}
 	
-	public static void close(Connection con, Statement stmt, 
-										ResultSet rset){
+	public static void close(Connection con, Statement stmt, ResultSet rset){
 		try {
 			if(rset != null){
 				rset.close();
