@@ -23,3 +23,8 @@
         </td>
 	</tr>
 </c:forEach>
+
+<script type="text/javascript">
+//txtFilter
+
+</script>

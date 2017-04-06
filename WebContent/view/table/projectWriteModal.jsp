@@ -197,10 +197,14 @@
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
 <script type="text/javascript" src="script/jquery-3.2.0.js"></script>
 <script type='text/javascript'>
+	$("#viewEmp").hide();
 	function filter(){
-		if($('#txtFilter').val()=="")
-			$("#viewEmp tr").css('display','');			
+		if($('#txtFilter').val()=="") {
+			$("#viewEmp").hide();
+			$("#viewEmp tr").css('display','');		
+		}
 		else{
+			$("#viewEmp").show();
 			$("#viewEmp tr").css('display','none');
 			$("#viewEmp tr[name*='"+$('#txtFilter').val()+"']").css('display','');
 		}
@@ -221,4 +225,14 @@
 			}
         });
 	}
+	
+
+	$(document).ready(function(){	
+		if($('#txtFilter').val()=="") {
+		    
+		
+		} else {
+		    $("#membertr").show();
+		}
+	});
 </script>

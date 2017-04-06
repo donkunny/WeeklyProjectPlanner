@@ -154,6 +154,9 @@
             </div>
         </div>
         
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resources/plugins/bower_components/jquery/dist/jquery.min.js"></script>        
+        
 <script type="text/javascript">
 function pageMove(v){
 	document.forms["common"]["command"].value = v;
