@@ -49,7 +49,6 @@ public class EmpController extends HttpServlet{
 
 	public void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id =request.getParameter("id");
-		
 		String pw = request.getParameter("pw");
 		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
 		String dPart = "";
@@ -89,7 +88,6 @@ public class EmpController extends HttpServlet{
 		} else {			
 			id =Integer.parseInt(request.getParameter("eIndex"));
 		}
-//		System.out.println("------------- " + id2);
 		String url = "view/error/listError.jsp"; // 에러 창으로 이동
 		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
 

@@ -38,9 +38,7 @@
 									class="form-control form-control-line">
 							</div>
 							<div class="col-md-4">
-								<input type="text" placeholder=""
-									class="form-control form-control-line" value="${msg.eName}"
-									readonly="readonly">
+								<input type="text" placeholder="" class="form-control form-control-line" value="${msg.eName}" readonly="readonly">
 							</div>
 						</div>
 						<div class="form-group modal-table">
@@ -54,18 +52,17 @@
 							<label class="col-md-4">진행률</label>
 							<div class="col-md-4">
 								<div class='input-group date' id='datetimepicker2'>
-									<input class="form-control" id="start_date" name="pdStartDate" placeholder="MM/DD/YYY" type="text" />
+									<input class="form-control" id="start_date" name="pdStartDate" placeholder="YYYY-MM-DD" type="text" />
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class='input-group date' id='datetimepicker2'>
-									<input class="form-control" id="end_date" name="pdEndDate" placeholder="MM/DD/YYY" type="text" />
+									<input class="form-control" id="end_date" name="pdEndDate" placeholder="YYYY-MM-DD" type="text" />
 								</div>
 							</div>
 							<div class="col-md-4">
 								<input type="text" placeholder=""
-									class="form-control form-control-line" value="0"
-									readonly="readonly">
+									class="form-control form-control-line" value="0" 	readonly="readonly">
 							</div>
 						</div>
 					</form>

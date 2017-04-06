@@ -290,4 +290,28 @@ public class ProjectDAOImpl implements ProjectDAO {
 		}
 		return pIndex;
 	}
+
+	@Override
+	public boolean updateDetailProject(PrjDetailDTO dto) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("update ProjectDetail set pdName = ?, pdProgress = ?, pdStartDate = ?, pdEndDate = ?,	"
+					+ "pdWriteDate=? where  pdIndex = ?");
+			pstmt.setString(1, dto.getPdName());
+			pstmt.setDouble(2, dto.getPdProgress());
+			pstmt.setDate(3, dto.getPdStartDate());
+			pstmt.setDate(4, dto.getPdEndDate());
+			pstmt.setDate(5,  dto.getPdWriteDate());
+			pstmt.setInt(6, dto.getPdIndex());
+			int result = pstmt.executeUpdate();
+			if(result ==1){
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
 }

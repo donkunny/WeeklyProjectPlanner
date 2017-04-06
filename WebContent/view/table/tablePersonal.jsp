@@ -40,7 +40,9 @@
                                     </thead>
                                     <c:forEach var="detail"  items="${dtlPrj[status.index]}" varStatus="dStatus">
                                     <tbody class="work-table">
-                                        <tr data-toggle="modal" data-target="#modifyModal"> 
+                                        <tr data-toggle="modal" data-target="#modifyModal" 
+                                        onclick="modifyDtlPrj( '${project.pName}', '${detail.dPart}' ,'${project.eHeadName }', '${detail.eName }' , 
+                                         '${detail.pdName}' ,  '${detail.pdStartDate }' , '${detail.pdEndDate }' , '${detail.pdProgress }' , '${detail.pdIndex }' )"> 
                                             <td>${dStatus.count}</td>
                                             <td>${detail.dPart}</td>
                                             <td>${detail.pdName }</td>
@@ -63,9 +65,6 @@
             </div>
 		</div>
 		<script type="text/javascript">
-			if($(requestScope.successMsg) != ''){
-				alert("입력 성공!");
-			}
 		</script>
 		<%@include file="/view/table/tableWriteModal.jsp" %>
 		<%@include file="/view/table/tableModifyModal.jsp" %>

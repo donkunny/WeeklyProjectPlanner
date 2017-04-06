@@ -19,4 +19,5 @@ public interface ProjectService {
 	public boolean insertDetailProject(PrjDetailDTO dto) throws SQLException;
 	public String selectDpartbyDIndex(int dIndex) throws SQLException;
 	public int selectPIndexbyPdIndex(int pdIndex) throws SQLException;
+	public boolean updateDetailProject(PrjDetailDTO dto) throws SQLException;
 }

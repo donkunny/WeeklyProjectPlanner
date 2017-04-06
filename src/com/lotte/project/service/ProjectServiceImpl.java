@@ -75,4 +75,8 @@ public class ProjectServiceImpl implements ProjectService{
 	public int selectPIndexbyPdIndex(int pdIndex) throws SQLException {
 		return projectDAO.selectPIndexbyPdIndex(pdIndex);
 	}
+	@Override
+	public boolean updateDetailProject(PrjDetailDTO dto) throws SQLException {
+		return projectDAO.updateDetailProject(dto);
+	}
 }
