@@ -72,7 +72,7 @@ public class EmpController extends HttpServlet{
 				session.setAttribute("msg", dto);
 				request.setAttribute("dto", sDto);
 				request.setAttribute("dtlPrj", detailProjects);
-				request.setAttribute("dPart", dPart);
+				session.setAttribute("dPart", dPart);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
