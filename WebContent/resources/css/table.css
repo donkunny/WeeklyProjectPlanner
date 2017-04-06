@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+
+.work-table {
+	
+}
+
+.work-table tr:hover {
+	background-color: #edf1f5;
+	cursor: pointer;
+}
+
+.btn-modal {
+	background-color: #e74c3c;
+	color: white;
+}
+
+.btn-modal:hover {
+	background-color: #ef6252;
+	cursor: pointer;
+	color: white;
+}
+
+.modal-table label{
+	font-size: 15px;
+    font-weight: 600;
+}
+
+.modal-table-header {
+	background-color: #2f323e;
+}
+
+.modal-table-header h4 {
+	color : white;
+}
+
+.modal-table-header .close {
+	color : white;
+	opacity: 1;
+}
+
+.modal-table-header .close:hover {
+	color : white;
+	opacity: 0.7;
+}
+
+.btn-write {
+	float: right;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 15px;
+    padding: 4px 10px;
+    margin-bottom: 14px;
+}
