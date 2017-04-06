@@ -94,7 +94,7 @@ public class EmpDAOImpl implements EmpDAO{
 		}
 		return list;
 	}
-	@Override //작성중
+	@Override 
 	public boolean insertTeamMember(int eIndex, int pIndex) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -102,8 +102,8 @@ public class EmpDAOImpl implements EmpDAO{
 		try{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("insert into ProjectTeam (ptIndex, pIndex, eIndex) values(SEQ_PT.NEXTVAL, ?, ?)");
-			pstmt.setInt(1, eIndex);
-			pstmt.setInt(2, pIndex);
+			pstmt.setInt(1, pIndex);
+			pstmt.setInt(2, eIndex);
 			int i = pstmt.executeUpdate();
 			
 			while(i == 1){

@@ -197,20 +197,6 @@
 		}
 		return false;
 	}
-	function selectEmp(v) {
-		$.ajax({
-			url:"${pageContext.request.contextPath}/emp",
-			data : {command : "insertTeamMember",
-					eIndex : v,
-					pIndex : v}, //프로젝트 코드 출력 요망
-			type : "post",
-			success : function() {
-				
-			},
-			error:function(s) {
-				console.log(s);
-			}
-        });
-	}
+	
 	
 </script>

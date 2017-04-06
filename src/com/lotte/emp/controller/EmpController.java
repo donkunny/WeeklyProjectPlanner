@@ -153,9 +153,6 @@ public class EmpController extends HttpServlet{
 	}
 
 	
-	//여기서부터 다ㅅ, 메뉴->목록출력->프로젝트관리->추가->insert->재정렬->>>>>
-	
-	
 	public void userList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "view/error/listError.jsp"; // 에러 창으로 이동
 		try {
@@ -193,7 +190,7 @@ public class EmpController extends HttpServlet{
 			boolean check = service.insertTeamMember(eIndex, pIndex);
 			if(check == true){
 				url ="view/table/findEmpModal.jsp";
-				//request.setAttribute("check", check);
+				request.setAttribute("memList", service.memberList(pIndex));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
