@@ -11,10 +11,10 @@
 			</div>
 			<div class="modal-body">
 				<div class="tab-pane" id="settings">
-					<form class="form-horizontal form-material"  id="put"  name="put" role="form">
-						<input type="hidden" name="pIndex"  id="pIndex"  value="">
+					<form class="form-horizontal form-material"  id="put_id"  name="put" role="form" method="post">
+						<input type="hidden" name="pIndex"  id="pIndex_id" value="">
 						<input type="hidden" name="eIndex" value="${msg.eIndex}">
-						<input type="hidden" name="command" value="">
+						<input type="hidden" name="command" id="command_id" value="insertDtlPrj">
 						<div class="form-group modal-table">
 							<label class="col-sm-12">프로젝트 명</label>
 							<div class="col-sm-12">
@@ -80,7 +80,7 @@
 	$('#changeHead').change(function(){
 	    var optId = $(this).find('option:selected').attr('id');
 	    var optValue =$(this).find('option:selected').attr('value');
-	    $('#put input').first().val(optId);
+	    $('#put_id input').first().val(optId);
 	    $('#hdName input').val(optValue);
 	});
 
@@ -90,7 +90,9 @@
 		var pdName = document.getElementById("pdName").value;
 		var pdStartDate =  document.getElementById("start_date").value;
 		var pdEndDate = document.getElementById("end_date").value;
-		document.forms["put"]["command"].value = 'insertDtlPrj' ;
+		var command = document.getElementById("command_id").value;
+		// alert(command);
+		//document.forms["put"]["command"].value = 'insertDtlPrj' ;
 		if (chosen == '책임자' || pdName =='' || pdStartDate=='' || pdEndDate=='' || pdStartDate>pdEndDate) {
 			if(chosen == '책임자' || pdName =='' || pdStartDate=='' || pdEndDate==''){
 				alert('내용을 입력해주세요.');
@@ -99,9 +101,8 @@
 				alert('시작일이 종료일보다 빨라야 합니다.');
 			}
 		} else {
-			formObj.attr("action", "<%=pageContext.getServletContext().getContextPath()%>/project");
-			formObj.attr("method", "post");
-			formObj.submit();
+			document.put.action="${pageContext.request.contextPath}/project";
+			document.put.submit();
 		}
 	};
 </script>

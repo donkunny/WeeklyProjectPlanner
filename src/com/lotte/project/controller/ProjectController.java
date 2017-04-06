@@ -27,6 +27,11 @@ public class ProjectController extends HttpServlet{
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String command = request.getParameter("command");
+		if(request.getParameter("command") == null){
+			command = (String) request.getAttribute("command");
+		} else {
+			command = request.getParameter("command");
+		}
 		System.out.println("command : " + command);
 		
 		if("mlistAll".equals(command)){
