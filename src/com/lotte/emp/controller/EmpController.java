@@ -38,11 +38,13 @@ public class EmpController extends HttpServlet{
 			personalCompletedProgress(request, response);
 		} else if("userList".equals(command)) {
 			userList(request, response);
+		} else if("insertTeamMember".equals(command)) {
+			insertTeamMember(request, response);
 		} else if("".equals(command)) {
 			
 		} 
 	}
-
+	
 	public void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -117,6 +119,9 @@ public class EmpController extends HttpServlet{
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 	
+	//여기서부터 다ㅅ, 메뉴->목록출력->프로젝트관리->추가->insert->재정렬->>>>>
+	
+	
 	public void userList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "view/error/listError.jsp"; // 에러 창으로 이동
 		try {
@@ -129,7 +134,37 @@ public class EmpController extends HttpServlet{
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
-		
+	}
+
+	/*private void memberList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int pIndex = Integer.parseInt(request.getParameter("pIndex"));
+		String url = "view/error/listError.jsp"; // 에러 창으로 이동
+		try {
+			ArrayList<SuperDTO> dto = service.memberList(pIndex);
+			if(dto != null){
+				url ="view/table/projectModifyModal.jsp";
+				request.setAttribute("memList", dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
+	}	*/
+	//작성중
+	private void insertTeamMember(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int eIndex = Integer.parseInt(request.getParameter("eIndex"));
+		int pIndex = Integer.parseInt(request.getParameter("pIndex"));
+		String url = "view/error/listError.jsp"; // 에러 창으로 이동
+		try {
+			boolean check = service.insertTeamMember(eIndex, pIndex);
+			if(check == true){
+				url ="view/table/findEmpModal.jsp";
+				//request.setAttribute("check", check);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

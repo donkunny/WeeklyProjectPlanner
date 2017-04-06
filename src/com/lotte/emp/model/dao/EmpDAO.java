@@ -11,5 +11,6 @@ public interface EmpDAO {
 	//check login user id && name
 	public EmpDTO userLogin(int id, String pw) throws SQLException;
 	public ArrayList<SuperDTO> userList() throws SQLException;
-	
+	public ArrayList<SuperDTO> memberList(int pIndex) throws SQLException;
+	public boolean insertTeamMember(int eIndex, int pIndex) throws SQLException;
 }

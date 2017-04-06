@@ -21,7 +21,7 @@
                         	<div class="col-sm-2">
                         		<button class="btn btn-write" data-toggle="modal" data-target="#projectWriteModal">작성</button>
                         	</div>                        
-                            <div class="table-responsive col-sm-12"> 
+                            <div class="table-responsive col-sm-12">
                                 <table class="table">
                                     <thead>   
                                         <tr>
@@ -35,27 +35,22 @@
                                             <th>진행률</th>
                                         </tr>
                                     </thead>
+                                    
                                     <tbody class="work-table">
-                                        <tr data-toggle="modal" data-target="#projectModifyModal">
-                                            <td>1</td>
-                                            <td>영업</td>
-                                            <td>모듈 개발</td>
-                                            <td>김진우</td>  
-                                            <td>17-02-14</td>
-                                            <td>17-03-22</td>
-                                            <td>45</td>
-                                            <td>55%</td>
+                                    <c:forEach var="project"  items="${pjtList}" varStatus="status">
+                                        <tr onclick="sendProjectInfo('${project.pIndex}','${project.dPart}','${project.pName}',
+                                        	'${project.eHeadName}','${project.pStartDate}','${project.pEndDate}','${project.pProgress}')">                                         	
+                                            <td>${status.count}</td>
+                                            <td>${project.dPart}</td>
+                                            <td>${project.pName}</td>
+                                            <td>${project.eHeadName}</td>  
+                                            <td>${project.pStartDate}</td>
+                                            <td>${project.pEndDate}</td>
+                                            <fmt:parseNumber var="period"  integerOnly="true" value="${(project.pEndDate.getTime()-project.pStartDate.getTime()) / (24 * 60 * 60 * 1000)}"/>
+                                            <td>${period}</td>
+                                            <td>${project.pProgress}</td>
                                     	</tr>
-                                    	<tr>
-                                            <td>2</td>
-                                            <td>영업</td>
-                                            <td>상품 지원</td>
-                                            <td>김진우</td>
-                                            <td>17-03-14</td>
-                                            <td>17-04-12</td>
-                                            <td>49</td>
-                                            <td>76%</td>
-                                    	</tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -65,6 +60,20 @@
                 <!-- /.row -->              
             </div>
 		</div>
+		<script>
+		function sendProjectInfo(i,d,p,h,s,e,g) {
+			//$("#printMem").val({varIndex : i});
+			$("#pjtName input").val(p);
+			$("#partOption select").val(d);
+			$("#phtHdName input").val(h);
+			$("#stDate input").val(s);
+			$("#edDate input").val(e);
+			$("#progress input").val(g);
+			
+			$('#projectModifyModal').modal('show'); 
+		} 
+		</script>	
+	
 		<%@include file="/view/table/projectWriteModal.jsp" %> 
 		<%@include file="/view/table/projectModifyModal.jsp" %> 
 		<%@include file="/view/table/findEmpModal.jsp" %> 

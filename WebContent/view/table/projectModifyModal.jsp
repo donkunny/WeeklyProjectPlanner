@@ -8,28 +8,28 @@
 		<div class="modal-content">
 			<div class="modal-header modal-table-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">PROJECT-작성</h4>
+				<h4 class="modal-title">PROJECT-수정</h4>
 			</div>
 			<div class="modal-body">
 				<div class="tab-pane" id="settings">
 					<form class="form-horizontal form-material">
 						<div class="form-group modal-table">							
 							<label class="col-sm-12">프로젝트 명</label>							
-							<div class="col-sm-12">
+							<div id="pjtName" class="col-sm-12">
 								<input type="text" placeholder="프로젝트 이름" class="form-control form-control-line">
 							</div>
 						</div>
 						<div class="form-group modal-table">
 							<label class="col-md-4">파트</label>
 							<label class="col-md-8">책임자</label>
-							<div class="col-sm-4">
+							<div id="partOption" class="col-sm-4">
 								<select class="form-control form-control-line">
-									<option>영업</option>
-									<option>지원</option>
+									<option value="영업">영업</option>
+									<option value="지원">지원</option>
 								</select>
 							</div>
-							<div class="col-md-8">
-								<input type="text" placeholder="김진우" class="form-control form-control-line">
+							<div id="phtHdName" class="col-md-8">
+								<input type="text" placeholder="책임자" class="form-control form-control-line">
 							</div>
 						</div>						
 						<div class="form-group modal-table">
@@ -49,24 +49,19 @@
                                         </tr>
                                     </thead>
                                     <tbody class="work-table">
-                                        <tr>  
-                                            <td>1</td>
-                                            <td>영업</td>
-                                            <td>김용현</td>
-                                            <td>업무 내용 작성</td> 
+                                    
+                                    <c:forEach var="member" items="${memList[1]}" varStatus="status">
+                                        <tr> 
+                                            <td>${status.count}</td>
+                                            <td>${member.dName}</td>
+                                            <td>${member.dPart}</td>
+                                            <td>${member.eName}</td>  
                                             <td>
                                             	<input type="button" class="btn" value="삭제">
                                             </td>
                                     	</tr>
-                                    	<tr>  
-                                            <td>2</td>
-                                            <td>영업</td>
-                                            <td>박소은</td>
-                                            <td>업무 내용 작성</td>
-                                            <td>
-                                            	<input type="button" class="btn" value="삭제">
-                                            </td>  
-                                    	</tr>
+                                    </c:forEach>
+                                     
                                     </tbody>
                                 </table>
                             </div>
@@ -75,17 +70,17 @@
 							<label class="col-md-4">시작일</label>
 							<label class="col-md-4">종료일</label>
 							<label class="col-md-4">진행률</label>
-							<div class="col-md-4">
+							<div id="stDate" class="col-md-4">
 								<div class='input-group date' id='datetimepicker2'>
         							<input class="form-control" id="start_date" name="start_date" placeholder="MM/DD/YYY" type="text"/>
 				                </div>
 							</div>
-							<div class="col-md-4">
+							<div id="edDate" class="col-md-4">
 								<div class='input-group date' id='datetimepicker2'>
         							<input class="form-control" id="end_date" name="end_date" placeholder="MM/DD/YYY" type="text"/>
 				                </div>
 							</div>
-							<div class="col-md-4">
+							<div id="progress" class="col-md-4">
 								<input type="text" placeholder="50%" class="form-control form-control-line">
 							</div>
 						</div>

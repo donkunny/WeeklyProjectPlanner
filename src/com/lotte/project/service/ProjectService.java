@@ -15,4 +15,5 @@ public interface ProjectService {
 	public ArrayList<SuperDTO> listProgressedPrjManagers(int eIndex) throws SQLException;
 	public ArrayList<SuperDTO> listProgressingPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
 	public ArrayList<SuperDTO> listProgressedPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
+	public ArrayList<SuperDTO> listProjectManagement(int eIndex) throws SQLException, NotExistException;
 }

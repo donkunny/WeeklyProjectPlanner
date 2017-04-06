@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<% String url = application.getContextPath() + "/"; %>
-	<!-- Modal -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- Modal -->
 <div class="modal fade" id="projectWriteModal" role="dialog">
 	<div class="modal-dialog">
 
@@ -34,25 +34,32 @@
 							</div>
 						</div>						
 						<div class="form-group modal-table">
-							<label class="col-sm-2">담당자</label>
+							<label class="col-sm-2">팀원</label>
 							<div class="col-sm-2">
-								<!-- <추가 <a href="=pageContext.getServletContext().getContextPath()%>/emp?command=userList">-->
 								<input type="button" class="btn" value="추가" onclick="printList()">
-								<!-- <input type="button" class="btn" value="추가" data-toggle="modal" data-target="#findEmpModal" onclick="printList()"> -->
-								<!-- </a>  -->
 							</div>
 							<div class="table-responsive col-sm-12"> 
                                 <table class="table"> 
                                     <thead>   
                                         <tr>
                                             <th>#</th>
+                                            <th>부서</th>
                                             <th>파트</th>
-                                            <th>담당자</th>
-                                            <th>업무 상세</th>
-                                            <th></th>
+                                            <th>이름</th>
                                         </tr>
                                     </thead>
+                                    <div id="test"></div>
+                                    <%--<c:forEach var="mDetail"  items="${memList}" varStatus="dStatus">
                                     <tbody class="work-table">
+                                        <tr> 
+                                            <td>${dStatus.count}</td>
+                                            <td>${mDetail.dName}</td>
+                                            <td>${mDetail.dPart}</td>
+                                            <td>${mDetail.eName}</td>  
+                                    	</tr>
+                                    </tbody>
+                                    </c:forEach>
+                                      <tbody id="viewMember" class="work-table">
                                         <tr>  
                                             <td>1</td>
                                             <td>영업</td>
@@ -71,7 +78,7 @@
                                             	<input type="button" class="btn" value="삭제">
                                             </td>  
                                     	</tr>
-                                    </tbody>
+                                    </tbody>--%>
                                 </table>
                             </div>
 						</div>
@@ -106,7 +113,6 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="script/jquery-3.2.0.js"></script>
 <script>
 	function printList() {
 		$.ajax({
@@ -115,13 +121,26 @@
 			type : "post",
 			success : function(data) {
 				$('#findEmpModal').modal(); 
-				$("#viewTest").html(data);
+				$("#viewEmp").html(data);
 			},
 			error:function(s) {
 				console.log(s);
 			}
         });
 	} 
+	/*function printMemberList(v) {
+		$.ajax({
+			url:"${pageContext.request.contextPath}/emp",
+			data : {command : "memberList",
+					pIndex : v},
+			type : "post",
+			success : function(data) {
+			},
+			error:function(s) {
+				console.log(s);
+			}
+        });
+	}*/
 </script>
 
 <!-- Modal -->
@@ -143,7 +162,7 @@
 								<input type="text" 
 								id='txtFilter' onkeyup='{filter();return false}' 
 								onkeypress='javascript:if(event.keyCode==13){ filter(); return false;}' 
-								placeholder="김동혁" class="form-control form-control-line">
+								placeholder="" class="form-control form-control-line">
 							</div>
 						</div>
 						<div class="form-group modal-table">
@@ -158,7 +177,7 @@
                                             <th>이름</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="viewTest" class="work-table">
+                                    <tbody id="viewEmp" class="work-table">
                                     </tbody>
                                 </table>
                             </div>							
@@ -177,14 +196,28 @@
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
 <script type="text/javascript" src="script/jquery-3.2.0.js"></script>
 <script type='text/javascript'>
-	
 	function filter(){
 		if($('#txtFilter').val()=="")
-			$("#viewTest tr").css('display','');			
+			$("#viewEmp tr").css('display','');			
 		else{
-			$("#viewTest tr").css('display','none');
-			$("#viewTest tr[name*='"+$('#txtFilter').val()+"']").css('display','');
+			$("#viewEmp tr").css('display','none');
+			$("#viewEmp tr[name*='"+$('#txtFilter').val()+"']").css('display','');
 		}
 		return false;
+	}
+	function selectEmp(v) {
+		$.ajax({
+			url:"${pageContext.request.contextPath}/emp",
+			data : {command : "insertTeamMember",
+					eIndex : v,
+					pIndex : v}, //프로젝트 코드 출력 요망
+			type : "post",
+			success : function() {
+				
+			},
+			error:function(s) {
+				console.log(s);
+			}
+        });
 	}
 </script>

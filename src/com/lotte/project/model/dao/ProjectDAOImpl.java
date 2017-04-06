@@ -221,4 +221,43 @@ public class ProjectDAOImpl implements ProjectDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public ArrayList<SuperDTO> listProjectManagement(int eIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		SuperDTO tmp = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select d.dPart, p.pName, e2.eName, p.pProgress, p.pStartDate, p.pEndDate, "
+					+ "p.pIndex, e2.eIndex, e1.eIndex, d.dIndex, pt.ptIndex "
+					+ "from Project p, Employee e2, Employee e1, Department d, ProjectTeam pt "
+					+ "where p.eIndex = e2.eIndex and e2.dIndex = d.dIndex and "
+					+ "pt.pIndex = p.pIndex and pt.eIndex = e1.eIndex and e1.eIndex = ? "
+					+ " order by p.pStartDate");
+			pstmt.setInt(1, eIndex);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while(rset.next()){
+				tmp = new SuperDTO();
+				tmp.setdPart(rset.getString(1));
+				tmp.setpName(rset.getString(2));
+				tmp.seteHeadName(rset.getString(3));
+				tmp.setpProgress(rset.getInt(4));
+				tmp.setpStartDate(rset.getDate(5));
+				tmp.setpEndDate(rset.getDate(6));
+				
+				tmp.setpIndex(rset.getInt(7));
+				tmp.seteHeadIndex(rset.getInt(8));
+				tmp.seteIndex(rset.getInt(9));
+				tmp.setdIndex(rset.getInt(10));
+				tmp.setPtIndex(rset.getInt(11));
+				list.add(tmp);
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
+	}
 }

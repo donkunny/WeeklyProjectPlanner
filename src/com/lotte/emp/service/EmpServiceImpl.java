@@ -27,5 +27,13 @@ public class EmpServiceImpl implements EmpService{
 	public ArrayList<SuperDTO> userList() throws SQLException {
 		return dao.userList();
 	}
+	@Override
+	public ArrayList<SuperDTO> memberList(int pIndex) throws SQLException {
+		return dao.memberList(pIndex);
+	}
+	@Override
+	public boolean insertTeamMember(int eIndex, int pIndex) throws SQLException {
+		return dao.insertTeamMember(eIndex, pIndex);
+	}
 
 }

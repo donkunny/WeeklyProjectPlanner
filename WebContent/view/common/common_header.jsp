@@ -124,7 +124,10 @@
                     
                     <li><a href="#" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>프로젝트<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="${pageContext.request.contextPath}/view/table/tableProjectTeam.jsp"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>프로젝트 팀 관리</a></li>
+                            <!-- <li><a href="${pageContext.request.contextPath}/view/table/tableProjectTeam.jsp" onclick="return projectPageMove('projectTaemManagement');">
+                            	<i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>프로젝트 팀 관리</a></li> -->
+                            <li><a href="javascript:void(0)" onclick="return projectPageMove('projectTaemManagement');">
+                            	<i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>프로젝트 팀 관리</a></li>
                             <li><a href="javascript:void(0)" class="waves-effect">영업<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="${pageContext.request.contextPath}/view/table/sales/progressChartProjectTeam.jsp">진행</a></li>
@@ -158,6 +161,12 @@ function pageMove(v){
 	document.common.action = "${pageContext.request.contextPath}/emp"; //서브밋
 	document.common.submit();
 }
+function projectPageMove(v){
+	   document.forms["common"]["command"].value = v;
+	   document.forms["common"]["eIndex"].value = ${msg.eIndex};
+	   document.common.action = "${pageContext.request.contextPath}/project"; //서브밋
+	   document.common.submit();
+	}
 function joinmove(){
 	document.location.href = "<%=root%>/member?act=mvjoin"; // 단순이동
 }
