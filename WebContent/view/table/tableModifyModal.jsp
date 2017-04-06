@@ -60,7 +60,7 @@
 			</div>
 					<div class="modal-footer">
 						<button class="btn btn-success" onclick="btn_modifyDtlPrj()">수정</button>
-						<button class="btn btn-success">삭제</button>
+						<button class="btn btn-success" onclick="btn_deleteDtlPrj()">삭제</button>
 						<button type="button" class="btn btn-success" data-dismiss="modal">취소</button>
 					</div>
 		</div>
@@ -68,6 +68,18 @@
 </div>
 <script src="${pageContext.request.contextPath}/script/jquery-3.2.0.js"></script>
 <script>
+function btn_deleteDtlPrj(){
+	document.forms["modify"]["command"].value = 'deleteDtlPrj' ;
+	document.modify.action="${pageContext.request.contextPath}/project";
+// 	alert(document.forms["modify"]["command"].value);
+// 	document.modify.submit();
+	if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+		document.modify.submit();
+	}else{   //취소
+	    return;
+	}
+};
+
 function modifyDtlPrj(a, b, c, d, e, f, g, h, i) {
 	 	 $('#div_pName input').val(a);
          $("#div_dPart input").val(b);
@@ -81,7 +93,7 @@ function modifyDtlPrj(a, b, c, d, e, f, g, h, i) {
  };
  
  function btn_modifyDtlPrj(){
-	 var pdIndex = pdIndex_id.value;
+	var pdIndex = pdIndex_id.value;
 	var formObj = $("form[role='form']");
 	var pdName = pdName_id.value;
 	var pdStartDate = startDate.value;
@@ -92,7 +104,6 @@ function modifyDtlPrj(a, b, c, d, e, f, g, h, i) {
 		if (pdName =='' || pdStartDate=='' || pdEndDate=='' || pdStartDate>pdEndDate || pdProgress=='') {
 			if(pdName =='' || pdStartDate=='' || pdEndDate=='' || pdProgress == ''){
 				alert('내용을 입력해주세요.');
-// 				alert('pdName: ' + pdName + ' pdStartDate: ' + pdStartDate + ' pdEndDate: ' +pdEndDate + 'pdProgress: ' + pdProgress);
 			}
 			if(pdStartDate>pdEndDate) {
 				alert('시작일이 종료일보다 빨라야 합니다.');
@@ -100,7 +111,12 @@ function modifyDtlPrj(a, b, c, d, e, f, g, h, i) {
 		} else {
 			formObj.attr("action", "<%=pageContext.getServletContext().getContextPath()%>/project");
 			formObj.attr("method", "post");
-			formObj.submit();
+			if (confirm("수정하시겠습니까?") == true){    //확인
+				formObj.submit();
+			}else{   //취소
+			    return;
+			}
+// 			formObj.submit();
 		}
  };
 </script>

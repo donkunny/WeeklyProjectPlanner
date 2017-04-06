@@ -79,4 +79,8 @@ public class ProjectServiceImpl implements ProjectService{
 	public boolean updateDetailProject(PrjDetailDTO dto) throws SQLException {
 		return projectDAO.updateDetailProject(dto);
 	}
+	@Override
+	public boolean deleteDetailProject(int pdIndex) throws SQLException {
+		return projectDAO.deleteDetailProject(pdIndex);
+	}
 }
