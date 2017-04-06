@@ -8,13 +8,14 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Basic Table</h4> </div>
+                    <div class="col-sm-10">
+                        <h3 class="box-title" style="font-weight: bold;">개인 업무 관리</h3>
+                    </div>
                     <!-- /.col-lg-12 -->
+	                <div class="col-sm-2 box-title" style="top: 7px;">
+	                   		<button class="btn btn-write" data-toggle="modal"  data-target="#writeModal">작성</button>
+	                 </div>    
                 </div>
-                <div class="col-sm-12" >
-                   		<button class="btn btn-write" data-toggle="modal"  data-target="#writeModal">작성</button>
-                 </div>    
                 <!-- /row -->
                 <c:forEach var="project" items="${dto}" varStatus="status">
                 <div class="row">

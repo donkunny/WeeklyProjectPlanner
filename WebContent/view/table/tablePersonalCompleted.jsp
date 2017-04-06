@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Basic Table</h4> </div>
+                        <h3 class="box-title" style="font-weight: bold;">개인 업무 관리</h3></div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /row -->

@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Basic Table</h4> </div>
+                        <h3 class="box-title" style="font-weight: bold;">프로젝트 세부 일정</h3></div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /row -->
@@ -17,6 +17,12 @@
 	                <div id="makeChart" class="row" id="tableViewTest">                 
 	                   <div class="col-sm-12 white-box">  
 	                        <div class="white-box">
+		                        <ul class="list-inline text-right">
+	                                <li>
+	                                    <h5><i class="fa fa-circle m-r-5 text-info"></i>프로젝트</h5> </li>
+	                                <li>
+	                                    <h5><i class="fa fa-circle m-r-5 text-inverse"></i>세부 업무</h5> </li>
+	                            </ul>
 	                        	<div class="col-sm-12">  
 	                        		<div id="visualization${no.count-1}" class="col-sm-12" ></div>		                            
 	                        	</div>

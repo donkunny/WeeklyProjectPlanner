@@ -3,7 +3,7 @@
 	<div>
 		<div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by themedesigner.in </footer>
+            <footer class="footer text-center"> 2017 &copy; LDCC HIT, 김동혁 김용현 김진우 박소은 </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>

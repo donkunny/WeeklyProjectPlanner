@@ -19,7 +19,7 @@
     <!-- animation CSS -->
     <link href="${pageContext.request.contextPath}/resources/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet"> 
+    <link href="${pageContext.request.contextPath}/resources/css/style.css?v=1" rel="stylesheet"> 
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker3.css" rel="stylesheet"> 
     <link href="${pageContext.request.contextPath}/resources/css/table.css?v=2" rel="stylesheet">    
     <!-- color CSS -->
@@ -56,7 +56,7 @@
             <div class="navbar-header">
                 <div class="top-left-part" style=" text-align: center;">
                     <!-- Logo -->
-                    <a class="logo" href="#" style="font-weight: 600; line-height: 30px; font-size: 22px;">WEEKLY PROJECT PLANNER</a>
+                    <a class="logo" href="#" style="font-weight: 600; line-height: 30px; font-size: 20px;">WEEKLY PROJECT PLANNER</a>
                 </div>
                 <!-- /Logo -->
                 <ul class="nav navbar-top-links navbar-right pull-right">
@@ -114,8 +114,6 @@
                         <ul class="nav nav-second-level">
                             <!-- <li><a href="${pageContext.request.contextPath}/view/table/tableProjectTeam.jsp" onclick="return projectPageMove('projectTaemManagement');">
                             	<i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>프로젝트 팀 관리</a></li> -->
-                            <li><a href="javascript:void(0)" onclick="return projectPageMove('projectTaemManagement');">
-                            	<i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>프로젝트 팀 관리</a></li>
                             <li><a href="javascript:void(0)" class="waves-effect">영업<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                 
@@ -132,6 +130,8 @@
                                     <li><a href="javascript:void(0);" onclick="return projectPageMove('mlistComplete');">완료</a></li>
                                 </ul>
                             </li>
+                            <li><a href="javascript:void(0)" onclick="return projectPageMove('projectTaemManagement');">
+                            	<i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>프로젝트 팀 관리</a></li>
                         </ul>
                     </li>
                     

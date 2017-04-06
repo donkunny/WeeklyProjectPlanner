@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Basic Table</h4> </div>
+                        <h3 class="box-title" style="font-weight: bold;">전체 프로젝트 일정</h3></div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /row -->
@@ -17,6 +17,10 @@
 	                   <div class="col-sm-12 white-box">
 	                   	<h3 style="font-weight: bold;">영업</h3>  
 	                        <div class="white-box">
+	                        	<ul class="list-inline text-right">
+	                                <li>
+	                                    <h5><i class="fa fa-circle m-r-5 text-info"></i>프로젝트</h5> </li>	                               
+	                            </ul>
 	                        	<div class="col-sm-12">
 	                        		<div id="visualization0" class="col-sm-12" ></div>		                            
 	                        	</div>
@@ -28,6 +32,10 @@
 	                   <div class="col-sm-12 white-box">
 	                   	<h3 style="font-weight: bold;">지원</h3>  
 	                        <div class="white-box">
+	                        	<ul class="list-inline text-right">
+	                                <li>
+	                                    <h5><i class="fa fa-circle m-r-5 text-info"></i>프로젝트</h5> </li>	                               
+	                            </ul>
 	                        	<div class="col-sm-12">
 	                        		<div id="visualization1" class="col-sm-12" ></div>		                            
 	                        	</div>

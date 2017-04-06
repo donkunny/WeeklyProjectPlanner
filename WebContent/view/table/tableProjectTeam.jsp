@@ -7,9 +7,13 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Basic Table</h4> </div>
+                    <div class="col-sm-10">
+                        <h3 class="box-title" style="font-weight: bold;">프로젝트 관리</h3>
+                    </div>
                     <!-- /.col-lg-12 -->
+	                <div class="col-sm-2 box-title" style="top: 7px;" >
+	                   		<button class="btn btn-write" data-toggle="modal"  data-target="#projectWriteModal">작성</button>
+	                 </div>    
                 </div>
                 <!-- /row -->
                 <div class="row">
@@ -17,10 +21,7 @@
                         <div class="white-box">
                         	<div class="col-sm-10">
 	                            <h3 class="box-title">프로젝트 리스트</h3> 
-                        	</div>
-                        	<div class="col-sm-2">
-                        		<button class="btn btn-write" data-toggle="modal" data-target="#projectWriteModal">작성</button>
-                        	</div>                        
+                        	</div>                       
                             <div class="table-responsive col-sm-12">
                                 <table class="table">
                                     <thead>   

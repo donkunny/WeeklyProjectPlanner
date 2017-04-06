@@ -55,7 +55,7 @@
 		<div class="header-content">
 			<div class="header-content-inner">
 				<div class="col-sm-12 login">
-					<h1 style="font-size: 42px; margin: 0px; font-family: Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;">WEEKLY WORK</h1>
+					<h1 style="font-size: 42px; margin: 0px; font-family: Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;">WEEKLY PROJECT</h1>
 					<h1 style="font-size: 42px; margin-bottom: 20px; font-family: Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;">PLANNER</h1>
 					<div class="col-sm-3"></div>
 					<div class="col-sm-6">
