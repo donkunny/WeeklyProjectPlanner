@@ -65,22 +65,9 @@ public class ProjectController extends HttpServlet{
 		int eIndex = Integer.parseInt(request.getParameter("eIndex"));
 		String url = "view/error/listError.jsp"; // 에러 창으로 이동
 		
-		//Map<Integer, ArrayList<SuperDTO>> projectMember = new HashMap<Integer, ArrayList<SuperDTO>>();
-		ArrayList<ArrayList<SuperDTO>> projectMember = new ArrayList<ArrayList<SuperDTO>>();
-		
 		try {
-			ArrayList<SuperDTO> dto = service.listProjectManagement(eIndex); 
-			if(dto != null){
-				for(int i = 0; i<dto.size(); i++){
-					//System.out.println(dto.get(i).toString());
-					//projectMember.put(dto.get(i).getpIndex(), eService.memberList(dto.get(i).getpIndex()));
-					projectMember.add(eService.memberList(dto.get(i).getpIndex()));
-				}//projectMember.get(1).get(1).getdName();
-			}
+			request.setAttribute("pjtList", service.listProjectManagement(eIndex));
 			url ="view/table/tableProjectTeam.jsp";
-			request.setAttribute("pjtList", dto);
-			request.setAttribute("memList", projectMember);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

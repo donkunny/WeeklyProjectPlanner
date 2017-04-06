@@ -39,7 +39,7 @@
                                     <tbody class="work-table">
                                     <c:forEach var="project"  items="${pjtList}" varStatus="status">
                                         <tr onclick="sendProjectInfo('${project.pIndex}','${project.dPart}','${project.pName}',
-                                        	'${project.eHeadName}','${project.pStartDate}','${project.pEndDate}','${project.pProgress}')">                                         	
+                                        	'${project.eHeadName}','${project.pStartDate}','${project.pEndDate}','${project.pProgress}');ajaxTest('${project.pIndex}');">                                         	
                                             <td>${status.count}</td>
                                             <td>${project.dPart}</td>
                                             <td>${project.pName}</td>
@@ -61,16 +61,15 @@
             </div>
 		</div>
 		<script>
+		
 		function sendProjectInfo(i,d,p,h,s,e,g) {
-			//$("#printMem").val({varIndex : i});
 			$("#pjtName input").val(p);
 			$("#partOption select").val(d);
 			$("#phtHdName input").val(h);
 			$("#stDate input").val(s);
 			$("#edDate input").val(e);
 			$("#progress input").val(g);
-			
-			$('#projectModifyModal').modal('show'); 
+			printMember(i);
 		} 
 		</script>	
 	

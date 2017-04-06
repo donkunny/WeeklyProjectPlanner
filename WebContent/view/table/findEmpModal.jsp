@@ -10,3 +10,16 @@
 		<td>${dataList.eName}</td>
 	</tr>
 </c:forEach>
+
+
+<c:forEach items="${memList}" var="member" varStatus="status">
+	<tr><%-- name="${dataList.eName}"--%>
+		<td>${status.count}</td>
+		<td>${member.dName}</td>
+		<td>${member.dPart}</td>
+		<td>${member.eName}</td>
+        <td>
+        	<input type="button" class="btn" value="삭제">
+        </td>
+	</tr>
+</c:forEach>

@@ -35,7 +35,7 @@
 						<div class="form-group modal-table">
 							<label class="col-sm-2">담당자</label>
 							<div class="col-sm-2">
-								<input type="button" class="btn" value="추가" data-toggle="modal" data-target="#findEmpModal">
+								<input type="button" class="btn" value="추가" onclick="printList()"> <%--  data-toggle="modal" data-target="#findEmpModal">--%>
 							</div>
 							<div class="table-responsive col-sm-12"> 
                                 <table class="table"> 
@@ -48,20 +48,7 @@
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody class="work-table">
-                                    
-                                    <c:forEach var="member" items="${memList[1]}" varStatus="status">
-                                        <tr> 
-                                            <td>${status.count}</td>
-                                            <td>${member.dName}</td>
-                                            <td>${member.dPart}</td>
-                                            <td>${member.eName}</td>  
-                                            <td>
-                                            	<input type="button" class="btn" value="삭제">
-                                            </td>
-                                    	</tr>
-                                    </c:forEach>
-                                     
+                                    <tbody id="printMember" class="work-table">
                                     </tbody>
                                 </table>
                             </div>
@@ -96,3 +83,21 @@
 		</div>
 	</div>
 </div>
+<script>
+function printMember(i){
+	$.ajax({
+		url:"${pageContext.request.contextPath}/emp",
+		data : {command : "memberList",
+				pIndex : i},
+		
+		type : "post",
+		success : function(data) {
+			$("#projectModifyModal").modal(); 
+			$("#printMember").html(data);
+		},
+		error:function(s) {
+			console.log(s);
+		}
+	})
+};
+</script>

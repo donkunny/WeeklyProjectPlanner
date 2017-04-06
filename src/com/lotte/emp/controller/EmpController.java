@@ -38,6 +38,8 @@ public class EmpController extends HttpServlet{
 			personalCompletedProgress(request, response);
 		} else if("userList".equals(command)) {
 			userList(request, response);
+		} else if("memberList".equals(command)) {
+			memberList(request, response);
 		} else if("insertTeamMember".equals(command)) {
 			insertTeamMember(request, response);
 		} else if("".equals(command)) {
@@ -136,20 +138,20 @@ public class EmpController extends HttpServlet{
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
-	/*private void memberList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void memberList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int pIndex = Integer.parseInt(request.getParameter("pIndex"));
 		String url = "view/error/listError.jsp"; // 에러 창으로 이동
 		try {
 			ArrayList<SuperDTO> dto = service.memberList(pIndex);
 			if(dto != null){
-				url ="view/table/projectModifyModal.jsp";
+				url ="view/table/findEmpModal.jsp";//projectModifyModal
 				request.setAttribute("memList", dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
-	}	*/
+	}	
 	//작성중
 	private void insertTeamMember(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int eIndex = Integer.parseInt(request.getParameter("eIndex"));
