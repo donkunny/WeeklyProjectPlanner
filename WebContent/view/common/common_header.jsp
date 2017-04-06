@@ -112,7 +112,10 @@
                     
                     <li><a href="#" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>프로젝트<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="${pageContext.request.contextPath}/view/table/tableProjectTeam.jsp"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>프로젝트 팀 관리</a></li>
+                            <!-- <li><a href="${pageContext.request.contextPath}/view/table/tableProjectTeam.jsp" onclick="return projectPageMove('projectTaemManagement');">
+                            	<i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>프로젝트 팀 관리</a></li> -->
+                            <li><a href="javascript:void(0)" onclick="return projectPageMove('projectTaemManagement');">
+                            	<i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>프로젝트 팀 관리</a></li>
                             <li><a href="javascript:void(0)" class="waves-effect">영업<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                 
@@ -142,6 +145,9 @@
                 </ul>
             </div>
         </div>
+        
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resources/plugins/bower_components/jquery/dist/jquery.min.js"></script>        
         
 <script type="text/javascript">
 function pageMove(v){

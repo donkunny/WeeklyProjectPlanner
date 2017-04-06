@@ -47,7 +47,8 @@ public class EmpDAOImpl implements EmpDAO{
 		ArrayList<SuperDTO> list = null;
 		try{
 			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement("select e.eIndex, e.eNum, e.eName, e.ePosition, d.dName, d.dPart from Employee e, Department d");
+			pstmt = con.prepareStatement("select e.eIndex, e.eNum, e.eName, e.ePosition, d.dName, d.dPart from Employee e, Department d"
+					+ " where d.dIndex = e.dIndex");
 			rset = pstmt.executeQuery();
 			list = new ArrayList<SuperDTO>();
 			while(rset.next()){
@@ -66,6 +67,52 @@ public class EmpDAOImpl implements EmpDAO{
 		return list;
 	}
 	@Override
+	public ArrayList<SuperDTO> memberList(int pIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<SuperDTO> list = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select d.dName, d.dPart, e.eName,"
+					+ " pt.pIndex, pt.eIndex from ProjectTeam pt, Employee e, Project p, Department d"
+					+ " where pt.eIndex = e.eIndex and pt.pIndex = p.pIndex and p.pIndex = ? and e.dIndex = d.dIndex");	
+			pstmt.setInt(1, pIndex);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while(rset.next()){
+				SuperDTO tmp = new SuperDTO();
+				tmp.setdName(rset.getString(1));
+				tmp.setdPart(rset.getString(2));
+				tmp.seteName(rset.getString(3));
+				tmp.setpIndex(rset.getInt(4));
+				tmp.seteIndex(rset.getInt(5));
+				list.add(tmp);
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return list;
+	}
+	@Override //작성중
+	public boolean insertTeamMember(int eIndex, int pIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean result = false;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("insert into ProjectTeam (ptIndex, pIndex, eIndex) values(SEQ_PT.NEXTVAL, ?, ?)");
+			pstmt.setInt(1, eIndex);
+			pstmt.setInt(2, pIndex);
+			int i = pstmt.executeUpdate();
+			
+			while(i == 1){
+				result = true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return result;
 	public String selectDPartbyDIndex(int dIndex) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;

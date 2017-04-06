@@ -1,5 +1,6 @@
 package com.lotte.project.service;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -37,6 +38,9 @@ public interface ProjectService {
 	public ArrayList<SuperDTO> listProgressedPrjManagers(int eIndex) throws SQLException;
 	public ArrayList<SuperDTO> listProgressingPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
 	public ArrayList<SuperDTO> listProgressedPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
+	public ArrayList<SuperDTO> listProjectManagement(int eIndex) throws SQLException, NotExistException;
+	public boolean deleteProject(int pIndex) throws SQLException, NotExistException;
+	public boolean updateProject(String pName, double pProgress, Date pStartDate, Date pEndDate,int pIndex, int eHeadIndex) throws SQLException, NotExistException;
 	public boolean insertDetailProject(PrjDetailDTO dto) throws SQLException;
 	public String selectDpartbyDIndex(int dIndex) throws SQLException;
 	public int selectPIndexbyPdIndex(int pdIndex) throws SQLException;

@@ -148,6 +148,23 @@ public class ProjectServiceImpl implements ProjectService {
 			throw new NotExistException("값이 존재하지 않습니다.");
 		return dao;
 	}
+	@Override
+	public ArrayList<SuperDTO> listProjectManagement(int eIndex) throws SQLException, NotExistException {
+		ArrayList<SuperDTO> dao = projectDAO.listProjectManagement(eIndex);
+		if(dao == null)
+			throw new NotExistException("값이 존재하지 않습니다.");
+		return dao;
+	}
+	@Override
+	public boolean deleteProject(int pIndex) throws SQLException, NotExistException {
+		boolean dao = projectDAO.deleteProject(pIndex);
+		return dao;
+	}
+	@Override
+	public boolean updateProject(String pName, double pProgress, Date pStartDate, Date pEndDate,int pIndex, int eHeadIndex) throws SQLException, NotExistException {
+		boolean dao = projectDAO.updateProject(pName,pProgress,pStartDate,pEndDate,pIndex, eHeadIndex);
+		return dao;
+	}
 	
 	@Override
 	public JSONObject spJsonComplete() throws SQLException, NotExistException {
