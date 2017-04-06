@@ -275,7 +275,7 @@ public class ProjectController extends HttpServlet{
 	}
 
 	private void updateProject(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date pStartDate = null;
 		Date pEndDate = null;
 		
@@ -287,14 +287,15 @@ public class ProjectController extends HttpServlet{
 	      //java.util.Date utilDate = new java.util.Date();
 	      //Date pdWriteDate = new Date(utilDate.getTime());
 	    try {
-	         java.util.Date pdStartDate_u = formatter.parse(request.getParameter("pStartDate"));
-	         java.util.Date pdEndDate_u = formatter.parse(request.getParameter("pEndDate"));
-	         pStartDate = new Date(pdStartDate_u.getTime());
-	         pEndDate = new Date(pdEndDate_u.getTime());
+	         java.util.Date p1StartDate = formatter.parse(request.getParameter("pStartDate"));
+	         System.out.println("1   "+p1StartDate);
+	         java.util.Date p1EndDate = formatter.parse(request.getParameter("pEndDate"));
+	         pStartDate = new Date(p1StartDate.getTime());
+	         pEndDate = new Date(p1EndDate.getTime());
+	         System.out.println("2  "+pStartDate);
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		System.out.println(pStartDate);
 		try {
 			service.updateProject(pName, pProgress, pStartDate, pEndDate, pIndex, eHeadIndex);
 		} catch (Exception e) {

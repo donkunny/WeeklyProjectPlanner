@@ -49,8 +49,8 @@
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody id="printMember" class="work-table">
-                                    </tbody>
+                                    <tbody id="printMember" class="work-table"></tbody>
+                                    <tbody id="addPrintMember" class="work-table"></tbody>                                    
                                 </table>
                             </div>
 						</div>
@@ -85,7 +85,9 @@
 	</div>
 </div>
 <script>
+var currProject = null;
 function printMember(i){
+	currProject=i;
 	$.ajax({
 		url:"${pageContext.request.contextPath}/emp",
 		data : {command : "memberList",
@@ -101,9 +103,34 @@ function printMember(i){
 		}
 	})
 };
-function submit(v) {
+function selectEmp(v) {
+	if(currProject == null) {
+		alert("currProject가 없습니다.");
+	}
+	$.ajax({
+		url:"${pageContext.request.contextPath}/emp",
+		data : {command : "insertTeamMember",
+				eIndex : v,
+				pIndex : currProject}, //프로젝트 코드 쿠키시도
+		type : "post",
+		success : function() {
+		},
+		error:function(s) {
+			console.log(s);
+		}
+    });
+};
+/*function modalReload() {
+	    var target = $(this).attr("href");
+	    // load the url and show modal on success
+	    $("#projectModifyModal .printMember").load(target, function() { 
+	         $("#projectModifyModal").modal("show"); 
+	    });
+};*/
+function submit(v) {	
 	if(v == 'save') {
 		var date_start_input = document.projectModifyForm.start_date.value;
+		alert(date_start_input);
 		var date_end_input = document.projectModifyForm.end_date.value;
 		$.ajax({
 			url:"${pageContext.request.contextPath}/project",

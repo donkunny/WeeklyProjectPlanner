@@ -193,7 +193,7 @@ public class EmpController extends HttpServlet{
 			boolean check = service.insertTeamMember(eIndex, pIndex);
 			if(check == true){
 				url ="view/table/findEmpModal.jsp";
-				//request.setAttribute("check", check);
+				request.setAttribute("memList", service.memberList(pIndex));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
