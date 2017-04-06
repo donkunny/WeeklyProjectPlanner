@@ -37,8 +37,8 @@ public class EmpController extends HttpServlet{
 			personalProgress(request, response);
 		} else if("personalCompletedProgress".equals(command)) {
 			personalCompletedProgress(request, response);
-		} else if("".equals(command)) {
-			
+		} else if("logout".equals(command)) {
+			userLogout(request, response);
 		}
 	}
 
@@ -69,6 +69,20 @@ public class EmpController extends HttpServlet{
 			e.printStackTrace();
 		}
 		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	public void userLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String root = request.getContextPath();
+		int eIndex =Integer.parseInt(request.getParameter("eIndex"));
+		try {
+			if(service.userCheck(eIndex)) {
+				HttpSession session = request.getSession();
+				session.invalidate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		response.sendRedirect(root+"/view/login/login.jsp");
 	}
 	
 	public void personalProgress(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

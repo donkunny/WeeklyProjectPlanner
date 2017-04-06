@@ -65,4 +65,23 @@ public class EmpDAOImpl implements EmpDAO{
 		}
 		return list;
 	}
+	@Override
+	public boolean userCheck(int eIndex) throws SQLException {
+		boolean flag = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select count(eIndex) from Employee e where eIndex = ?");
+			pstmt.setInt(1, eIndex);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				flag = true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt, rset);
+		}
+		return flag;
+	}
 }
