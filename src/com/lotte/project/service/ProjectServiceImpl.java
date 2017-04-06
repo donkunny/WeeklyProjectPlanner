@@ -1,5 +1,6 @@
 package com.lotte.project.service;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -72,6 +73,11 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public boolean deleteProject(int pIndex) throws SQLException, NotExistException {
 		boolean dao = projectDAO.deleteProject(pIndex);
+		return dao;
+	}
+	@Override
+	public boolean updateProject(String pName, double pProgress, Date pStartDate, Date pEndDate,int pIndex, int eHeadIndex) throws SQLException, NotExistException {
+		boolean dao = projectDAO.updateProject(pName,pProgress,pStartDate,pEndDate,pIndex, eHeadIndex);
 		return dao;
 	}
 	

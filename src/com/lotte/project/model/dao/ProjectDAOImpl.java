@@ -1,6 +1,7 @@
 package com.lotte.project.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -269,6 +270,31 @@ public class ProjectDAOImpl implements ProjectDAO{
 			con = DBUtil.getConnection();
 			pstmt = con.prepareStatement("delete from Project where pIndex = ? ");
 			pstmt.setInt(1, pIndex);
+			int i = pstmt.executeUpdate();
+			
+			while(i == 1){
+				result = true;
+			}
+		}finally{
+			DBUtil.close(con, pstmt);
+		}
+		return result;
+	}
+	@Override
+	public boolean updateProject(String pName, double pProgress, Date pStartDate, Date pEndDate,int pIndex, int eHeadIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean result = false;
+				
+		try{
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("update Project set pName = ?, eIndex = ?, pProgress = ?, pStartDate = ?, pEndDate = ? where  pIndex = ?");
+			pstmt.setString(1, pName);
+			pstmt.setInt(2, eHeadIndex);
+			pstmt.setDouble(3, pProgress);
+			pstmt.setDate(4, pStartDate);
+			pstmt.setDate(5, pEndDate);
+			pstmt.setInt(6, pIndex);
 			int i = pstmt.executeUpdate();
 			
 			while(i == 1){

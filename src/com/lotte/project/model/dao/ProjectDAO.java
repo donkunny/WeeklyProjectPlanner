@@ -1,5 +1,6 @@
 package com.lotte.project.model.dao;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -17,4 +18,5 @@ public interface ProjectDAO {
 	public ArrayList<SuperDTO> listProgressedPrjDtlManagers(int eIndex, int pIndex) throws SQLException;
 	public ArrayList<SuperDTO> listProjectManagement(int eIndex) throws SQLException;
 	public boolean deleteProject(int pIndex) throws SQLException;
+	public boolean updateProject(String pName, double pProgress, Date pStartDate, Date pEndDate,int pIndex, int eHeadIndex) throws SQLException;
 }

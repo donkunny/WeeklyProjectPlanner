@@ -1,12 +1,15 @@
 package com.lotte.project.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.lotte.emp.service.EmpService;
 import com.lotte.emp.service.EmpServiceImpl;
@@ -76,14 +79,37 @@ public class ProjectController extends HttpServlet{
 		int pIndex = Integer.parseInt(request.getParameter("pIndex"));
 		
 		try {
-			request.setAttribute("pjtList", service.deleteProject(pIndex));
+			service.deleteProject(pIndex);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(" 삭제 - 프로젝트 코드 : " + pIndex);
 	}
 
-	private void updateProject(HttpServletRequest request, HttpServletResponse response) {
+	private void updateProject(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		Date pStartDate = null;
+		Date pEndDate = null;
 		
+		String pName = request.getParameter("pName");
+		double pProgress = Double.parseDouble(request.getParameter("pProgress"));
+		int pIndex = Integer.parseInt(request.getParameter("pIndex"));
+		int eHeadIndex = Integer.parseInt(request.getParameter("eHeadIndex"));
+		
+	      //java.util.Date utilDate = new java.util.Date();
+	      //Date pdWriteDate = new Date(utilDate.getTime());
+	    try {
+	         java.util.Date pdStartDate_u = formatter.parse(request.getParameter("pStartDate"));
+	         java.util.Date pdEndDate_u = formatter.parse(request.getParameter("pEndDate"));
+	         pStartDate = new Date(pdStartDate_u.getTime());
+	         pEndDate = new Date(pdEndDate_u.getTime());
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println(pStartDate);
+		try {
+			service.updateProject(pName, pProgress, pStartDate, pEndDate, pIndex, eHeadIndex);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

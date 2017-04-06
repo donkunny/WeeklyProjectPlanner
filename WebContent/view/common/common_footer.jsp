@@ -30,7 +30,7 @@
 		var container = $('.bootstrap-iso form').length > 0 ? $(
 				'.bootstrap-iso form').parent() : "body";
 		var options = {
-			format : 'yy/mm/dd',
+			format : 'yyyy-mm-dd',
 			container : container,
 			todayHighlight : true,
 			autoclose : true,
