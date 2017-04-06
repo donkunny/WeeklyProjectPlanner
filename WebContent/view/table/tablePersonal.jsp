@@ -21,7 +21,7 @@
                     <div class="col-sm-12 white-box">  
                         <div class="white-box">
                         	<div class="col-sm-10">
-	                             <h3 class="box-title">${project.pName} / ${project.eName }</h3>
+	                             <h3 class="box-title">${project.pName} / ${project.eHeadName }</h3>
                         	</div>
                         	                    
                             <div class="table-responsive col-sm-12"> 
@@ -40,7 +40,9 @@
                                     </thead>
                                     <c:forEach var="detail"  items="${dtlPrj[status.index]}" varStatus="dStatus">
                                     <tbody class="work-table">
-                                        <tr data-toggle="modal" data-target="#modifyModal"> 
+                                        <tr data-toggle="modal" data-target="#modifyModal" 
+                                        onclick="modifyDtlPrj( '${project.pName}', '${detail.dPart}' ,'${project.eHeadName }', '${detail.eName }' , 
+                                         '${detail.pdName}' ,  '${detail.pdStartDate }' , '${detail.pdEndDate }' , '${detail.pdProgress }' , '${detail.pdIndex }' )"> 
                                             <td>${dStatus.count}</td>
                                             <td>${detail.dPart}</td>
                                             <td>${detail.pdName }</td>
@@ -62,6 +64,8 @@
                 </c:forEach>              
             </div>
 		</div>
+		<script type="text/javascript">
+		</script>
 		<%@include file="/view/table/tableWriteModal.jsp" %>
 		<%@include file="/view/table/tableModifyModal.jsp" %>
 		<%@include file="/view/common/common_footer.jsp" %>		

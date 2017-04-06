@@ -51,7 +51,6 @@
 </head>
  
 <body id="page-top">
-	<header style="background-image: url(${pageContext.request.contextPath}/resources/plugins/images/background/login.jpg);"> 
 		<div class="header-content">
 			<div class="header-content-inner">
 				<div class="col-sm-12 login">
@@ -130,7 +129,5 @@
 			}
 		}	
 	</script>
-	
 </body>
-
 </html>

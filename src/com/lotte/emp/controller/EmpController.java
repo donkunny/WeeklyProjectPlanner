@@ -28,7 +28,12 @@ public class EmpController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String command = request.getParameter("command");
+		String command = null;
+		if(request.getParameter("command") == null){
+			command = (String) request.getAttribute("command");
+		} else {
+			command = request.getParameter("command");
+		}
 		System.out.println("command : " + command);
 		
 		if(command.equals("login")){
@@ -46,6 +51,7 @@ public class EmpController extends HttpServlet{
 		String id =request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String url = "view/error/loginError.jsp"; // 에러 창으로 이동
+		String dPart = "";
 
 		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
 
@@ -59,11 +65,14 @@ public class EmpController extends HttpServlet{
 						detailProjects.add(pService.listProgressingPrjDtlManagers(sDto.get(i).geteIndex(), sDto.get(i).getpIndex()));
 					}
 				}
+//				System.out.println(sDto.toString());
+				dPart = pService.selectDpartbyDIndex(dto.getdIndex());
 				url ="view/table/tablePersonal.jsp";
 				HttpSession session = request.getSession();
 				session.setAttribute("msg", dto);
-				session.setAttribute("dto", sDto);
-				session.setAttribute("dtlPrj", detailProjects);
+				request.setAttribute("dto", sDto);
+				request.setAttribute("dtlPrj", detailProjects);
+				request.setAttribute("dPart", dPart);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,9 +95,14 @@ public class EmpController extends HttpServlet{
 	}
 	
 	public void personalProgress(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id =Integer.parseInt(request.getParameter("eIndex"));
+		HttpSession session = request.getSession();
+		int id = -1;
+		if(request.getParameter("eIndex")==null) {
+			id = (Integer)session.getAttribute("eIndex");			
+		} else {			
+			id =Integer.parseInt(request.getParameter("eIndex"));
+		}
 		String url = "view/error/listError.jsp"; // 에러 창으로 이동
-
 		ArrayList<ArrayList<SuperDTO>> detailProjects = new ArrayList<ArrayList<SuperDTO>>();
 
 		try {
@@ -99,7 +113,7 @@ public class EmpController extends HttpServlet{
 					}
 				}
 				url ="view/table/tablePersonal.jsp";
-				HttpSession session = request.getSession();
+				session = request.getSession();
 				session.setAttribute("dto", sDto);
 				session.setAttribute("dtlPrj", detailProjects);
 		} catch (Exception e) {
@@ -129,5 +143,4 @@ public class EmpController extends HttpServlet{
 		}
 		request.getRequestDispatcher(url).forward(request, response);
 	}
-
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.lotte.emp.model.dto.SuperDTO;
+import com.lotte.project.model.dto.PrjDetailDTO;
 import com.lotte.project.model.dto.ProjectDTO;
 import com.lotte.util.DBUtil;
 
@@ -72,7 +73,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 			while (rset.next()) {
 				tmp = new SuperDTO();
 				tmp.setpName(rset.getString(1));
-				tmp.seteName(rset.getString(2));
+				tmp.seteHeadName(rset.getString(2));
 				tmp.seteIndex(rset.getInt(3));
 				tmp.setpIndex(rset.getInt(4));
 				tmp.setPtIndex(rset.getInt(5));
@@ -102,7 +103,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 			while (rset.next()) {
 				SuperDTO tmp = new SuperDTO();
 				tmp.setpName(rset.getString(1));
-				tmp.seteName(rset.getString(2));
+				tmp.seteHeadName(rset.getString(2));
 				tmp.seteIndex(rset.getInt(3));
 				tmp.setpIndex(rset.getInt(4));
 				tmp.setPtIndex(rset.getInt(5));
@@ -190,6 +191,29 @@ public class ProjectDAOImpl implements ProjectDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<SuperDTO> list = null;
+		SuperDTO tmp = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement(
+					"select p.pName, e2.eName, e1.eName, e2.eIndex, p.pIndex, pt.ptIndex, pd.pdName, pd.pdIndex, d.dPart "
+							+ "from Employee e1, Employee e2, Project p, ProjectTeam pt, ProjectDetail pd, department d "
+							+ "where e1.eIndex = pt.eIndex" + "and pd.pIndex = p.pIndex" + "and pd.eIndex = e1.eIndex "
+							+ "and pt.pIndex = p.pIndex" + "and p.eIndex = e2.eIndex" + "and p.pProgress < 100 "
+							+ "and e1.dIndex = d.dIndex" + "and d.dPart = '영업'");
+			rset = pstmt.executeQuery();
+			list = new ArrayList<SuperDTO>();
+			while (rset.next()) {
+				tmp = new SuperDTO();
+				tmp.setpName(rset.getString(1));
+				tmp.seteHeadName(rset.getString(2));
+				tmp.seteName(rset.getString(3));
+				tmp.seteHeadIndex(rset.getInt(4));
+				tmp.setpIndex(rset.getInt(5));
+				tmp.setPtIndex(rset.getInt(6));
+				tmp.setPdName(rset.getString(7));
+				tmp.setPdIndex(rset.getInt(8));
+				tmp.setdPart(rset.getString(9));
+				list.add(tmp);
 		SuperDTO sdto = null;
 		try {
 			con = DBUtil.getConnection();
@@ -432,6 +456,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	@Override
+
 	public ArrayList<SuperDTO> teamlistComplete() throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -466,5 +491,94 @@ public class ProjectDAOImpl implements ProjectDAO {
 			DBUtil.close(con, pstmt, rset);
 		}
 		return list;
+	}
+
+	@Override
+	public boolean insertDetailProject(PrjDetailDTO dto) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("insert into ProjectDetail (pdIndex, pIndex, eIndex, pdName, pdProgress, pdStartDate, pdEndDate, pdWriteDate)" 
+			+ " values(seq_pd.nextval, ?, ?, ?, ?, ?, ?, ?)");
+			pstmt.setInt(1, dto.getpIndex());
+			pstmt.setInt(2, dto.geteIndex());
+			pstmt.setString(3, dto.getPdName());
+			pstmt.setDouble(4, dto.getPdProgress());
+			pstmt.setDate(5, dto.getPdStartDate());
+			pstmt.setDate(6, dto.getPdEndDate());
+			pstmt.setDate(7, dto.getPdWriteDate());
+			int result = pstmt.executeUpdate();
+			if(result ==1){
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
+	}
+
+	@Override
+	public String selectDpartbyDIndex(int dIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String dPart = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select dPart from department where dIndex = ? ");
+			pstmt.setInt(1, dIndex);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				dPart = rset.getString(1);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return dPart;
+	}
+
+	@Override
+	public int selectPIndexbyPdIndex(int pdIndex) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int pIndex = -1;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("select pIndex from ProjectDetail where pdIndex = ? ");
+			pstmt.setInt(1, pdIndex);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				pIndex = rset.getInt(1);
+			}
+		} finally {
+			DBUtil.close(con, pstmt, rset);
+		}
+		return pIndex;
+	}
+
+	@Override
+	public boolean updateDetailProject(PrjDetailDTO dto) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DBUtil.getConnection();
+			pstmt = con.prepareStatement("update ProjectDetail set pdName = ?, pdProgress = ?, pdStartDate = ?, pdEndDate = ?,	"
+					+ "pdWriteDate=? where  pdIndex = ?");
+			pstmt.setString(1, dto.getPdName());
+			pstmt.setDouble(2, dto.getPdProgress());
+			pstmt.setDate(3, dto.getPdStartDate());
+			pstmt.setDate(4, dto.getPdEndDate());
+			pstmt.setDate(5,  dto.getPdWriteDate());
+			pstmt.setInt(6, dto.getPdIndex());
+			int result = pstmt.executeUpdate();
+			if(result ==1){
+				return true;
+			}
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		return false;
 	}
 }
