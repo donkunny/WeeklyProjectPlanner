@@ -79,6 +79,7 @@ public class EmpDAOImpl implements EmpDAO{
 			DBUtil.close(con, pstmt, rset);
 		}
 		return null;
+	}
     
 	public boolean userCheck(int eIndex) throws SQLException {
 		boolean flag = false;

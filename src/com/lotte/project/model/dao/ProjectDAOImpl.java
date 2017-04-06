@@ -191,29 +191,6 @@ public class ProjectDAOImpl implements ProjectDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<SuperDTO> list = null;
-		SuperDTO tmp = null;
-		try {
-			con = DBUtil.getConnection();
-			pstmt = con.prepareStatement(
-					"select p.pName, e2.eName, e1.eName, e2.eIndex, p.pIndex, pt.ptIndex, pd.pdName, pd.pdIndex, d.dPart "
-							+ "from Employee e1, Employee e2, Project p, ProjectTeam pt, ProjectDetail pd, department d "
-							+ "where e1.eIndex = pt.eIndex" + "and pd.pIndex = p.pIndex" + "and pd.eIndex = e1.eIndex "
-							+ "and pt.pIndex = p.pIndex" + "and p.eIndex = e2.eIndex" + "and p.pProgress < 100 "
-							+ "and e1.dIndex = d.dIndex" + "and d.dPart = '영업'");
-			rset = pstmt.executeQuery();
-			list = new ArrayList<SuperDTO>();
-			while (rset.next()) {
-				tmp = new SuperDTO();
-				tmp.setpName(rset.getString(1));
-				tmp.seteHeadName(rset.getString(2));
-				tmp.seteName(rset.getString(3));
-				tmp.seteHeadIndex(rset.getInt(4));
-				tmp.setpIndex(rset.getInt(5));
-				tmp.setPtIndex(rset.getInt(6));
-				tmp.setPdName(rset.getString(7));
-				tmp.setPdIndex(rset.getInt(8));
-				tmp.setdPart(rset.getString(9));
-				list.add(tmp);
 		SuperDTO sdto = null;
 		try {
 			con = DBUtil.getConnection();

@@ -65,7 +65,7 @@ public class EmpController extends HttpServlet{
 						detailProjects.add(pService.listProgressingPrjDtlManagers(sDto.get(i).geteIndex(), sDto.get(i).getpIndex()));
 					}
 				}
-//				System.out.println(sDto.toString());
+//				System.out.println(sDto.toString());				
 				dPart = pService.selectDpartbyDIndex(dto.getdIndex());
 				url ="view/table/tablePersonal.jsp";
 				HttpSession session = request.getSession();
